@@ -17,6 +17,10 @@ public class AlertUtils {
         crearAlerta(titulo, mensaje, Alert.AlertType.WARNING);
     }
 
+    public static void mostrarConfirmacion(String titulo, String mensaje) {
+        crearAlerta(titulo, mensaje, Alert.AlertType.CONFIRMATION);
+    }
+
     public static void crearAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);

@@ -47,5 +47,9 @@ public class ControlHorarioService {
             return objectMapper.readValue(response, EmpleadoDTO.class);
         }
 
+        public void borrarEmpleado(int idEmpleado) throws Exception {
+        apiClient.delete("/empleados/empleado/" + idEmpleado);
+        }
+
 
 }

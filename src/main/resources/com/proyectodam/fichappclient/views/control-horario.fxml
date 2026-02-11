@@ -31,7 +31,7 @@
 
             <DatePicker fx:id="datePickerFechaAlta" promptText="Fecha Alta" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <DatePicker fx:id="datePickerFechaNacimiento" promptText="Fecha Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="buttonGuardar" onAction="#botonGuardarEmpleado" prefHeight="25.0" prefWidth="150.0" text="Guardar Empleado" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="botonGuardar" onAction="#botonGuardarEmpleado" prefHeight="25.0" prefWidth="150.0" text="Guardar Empleado" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -52,7 +52,7 @@
 
     <HBox alignment="CENTER_RIGHT" spacing="10">
         <Button text="Editar" /><!-- onAction="#botonEditar"-->
-        <Button text="Eliminar" /><!-- onAction="#botonEliminar"-->
+        <Button text="Eliminar" onAction="#botonEliminarEmpleado" fx:id="botonEliminar"/>
     </HBox>
 
 

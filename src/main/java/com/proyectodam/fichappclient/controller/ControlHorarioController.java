@@ -3,6 +3,7 @@ package com.proyectodam.fichappclient.controller;
 import com.proyectodam.fichappclient.model.*;
 import com.proyectodam.fichappclient.service.ControlHorarioService;
 import com.proyectodam.fichappclient.util.AlertUtils;
+import com.proyectodam.fichappclient.util.ApiClient;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 public class ControlHorarioController {
@@ -23,7 +25,7 @@ public class ControlHorarioController {
     @FXML
     private ComboBox<RolDTO> rolDTOComboBox;
     @FXML
-    private Button buttonGuardar;
+    private Button botonGuardar, botonEliminar;
     @FXML
     private TableView<EmpleadoDTO> tablaAltaRapidaEmpleados;
     @FXML
@@ -182,7 +184,40 @@ public class ControlHorarioController {
         txtDni.clear();
         datePickerFechaAlta.setValue(null);
         datePickerFechaNacimiento.setValue(null);
+        departamentoDTOComboBox.getSelectionModel().clearSelection();
         departamentoDTOComboBox.setValue(null);
+        departamentoDTOComboBox.setPromptText("Departamento");
+        departamentoDTOComboBox.setEditable(true);
+        rolDTOComboBox.getSelectionModel().clearSelection();
         rolDTOComboBox.setValue(null);
+        rolDTOComboBox.setEditable(true);
+        rolDTOComboBox.setPromptText("Rol");
+    }
+
+    @FXML
+    private void botonEliminarEmpleado(ActionEvent event) {
+
+        EmpleadoDTO empleadoDTO = tablaAltaRapidaEmpleados.getSelectionModel().getSelectedItem();
+        if(empleadoDTO == null) {
+            AlertUtils.mostrarAdvertencia("Advertencia", "Tienes que seleccionar un empleado");
+            return;
+        }
+
+        AlertUtils.mostrarConfirmacion("Confirmando eliminación empleado", String.format("¿Seguro que quieres eliminar al empleado seleccionado: %s?", empleadoDTO.getNombre()));
+
+        try {
+            controlHorarioService.borrarEmpleado(empleadoDTO.getIdEmpleado());
+            tablaAltaRapidaEmpleados.getItems().remove(empleadoDTO);
+        } catch (Exception e) {
+            AlertUtils.mostrarError("Error","No se ha podido eliminar al empleado");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void configurarSeleccion() {
+        botonEliminar.setDisable(true);
+
+        tablaAltaRapidaEmpleados.getSelectionModel().selectedItemProperty().addListener((observable, antiguoValor, nuevoValor) ->
+                botonEliminar.setDisable(nuevoValor == null));
     }
 }
