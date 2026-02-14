@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="367.0" prefWidth="743.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControlHorarioController">
+<padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+</padding>
+
+<TitledPane collapsible="false" text="Alta rápida de empleado">
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="150" />
+                <ColumnConstraints prefWidth="150" />
+                <ColumnConstraints prefWidth="150" />
+                <ColumnConstraints prefWidth="150" />
+            </columnConstraints>
+
+            <TextField fx:id="txtNombre" promptText="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="txtApellidos" promptText="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="txtEmail" promptText="Email" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <TextField fx:id="txtDireccion" promptText="Dirección" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+            <TextField fx:id="txtTelefono" promptText="Teléfono" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="departamentoDTOComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Departamento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="rolDTOComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Rol" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDni" promptText="DNI_NIE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+            <DatePicker fx:id="datePickerFechaAlta" promptText="Fecha Alta" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerFechaNacimiento" promptText="Fecha Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="botonGuardar" onAction="#botonGuardarEmpleado" prefHeight="25.0" prefWidth="150.0" text="Guardar Empleado" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </content>
+</TitledPane>
+
+<TableView fx:id="tablaAltaRapidaEmpleados" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="columnaParaNombre" text="Nombre" />
+            <TableColumn fx:id="columnaParaApellido" text="Apellido" />
+            <TableColumn fx:id="columnaParaCorreo" text="Correo" />
+            <TableColumn fx:id="columnaParaEstado" text="Estado" />
+        </columns>
+</TableView>
+
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Editar" /><!-- onAction="#botonEditar"-->
+        <Button text="Eliminar" onAction="#botonEliminarEmpleado" fx:id="botonEliminar"/>
+    </HBox>
+
+
+
+</VBox>
