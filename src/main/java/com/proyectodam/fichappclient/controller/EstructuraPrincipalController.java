@@ -4,6 +4,7 @@ package com.proyectodam.fichappclient.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,8 @@ public class EstructuraPrincipalController {
 
     @FXML
     private ToggleButton btnControlHorario;
+    @FXML
+    private Button btnControlHorarioEmpleados;
 
     @FXML
     private VBox subControlHorarioMenu;
@@ -26,13 +29,13 @@ public class EstructuraPrincipalController {
         subControlHorarioMenu.setVisible(isVisible);
         subControlHorarioMenu.setManaged(isVisible); //con esto ajustamos el layout
 
-        vistaCargada("/com/proyectodam/fichappclient/views/control-horario.fxml");
+        vistaCargada("/com/proyectodam/fichappclient/views/controlhorario/control-horario-empleador.fxml");
     }
 
 
     @FXML
     private void handleEmpleados() {
-        vistaCargada("/com/proyectodam/fichappclient/views/control-horario.fxml");
+        vistaCargada("/com/proyectodam/fichappclient/views/controlhorario/control-horario-empleador-empleado.fxml");
     }
 
     private void vistaCargada(String fxmlRuta)  {

@@ -27,8 +27,8 @@
                      <ToggleButton fx:id="btnControlHorario" maxWidth="Infinity" onAction="#handleControlHorarioMenu" prefHeight="37.0" prefWidth="101.0" styleClass="boton-menu" text="Control Horario" />
                      <VBox fx:id="subControlHorarioMenu" maxWidth="Infinity" managed="false" spacing="2" style="-fx-padding: 0 0 0 20;" visible="false">
                          <children>
-                             <Button maxWidth="Infinity" onAction="#handleEmpleados" styleClass="sub-menu-button" text="Empleados" />
-                             <Button maxWidth="Infinity" styleClass="sub-menu-button" text="Equipos" />
+                             <Button fx:id="btnControlHorarioEmpleados" maxWidth="Infinity" onAction="#handleEmpleados" styleClass="sub-menu-button" text="Empleados" />
+                          <!--   <Button maxWidth="Infinity" styleClass="sub-menu-button" text="Equipos" /> -->
                          </children>
                      </VBox>
                  </children>
