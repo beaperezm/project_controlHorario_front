@@ -13,7 +13,6 @@ public class AltaRapidaEmpleadoDTO {
     private String email;
     private String direccion;
     private String telefono;
-    @JsonProperty("dni_nie")
     private String dni;
     private int idDepartamento;
     private int idRol;

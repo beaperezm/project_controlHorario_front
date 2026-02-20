@@ -1,6 +1,7 @@
 package com.proyectodam.fichappclient.controller.ControlHorario;
 
 import com.proyectodam.fichappclient.model.*;
+import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorEmpleadoService;
 import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorService;
 import com.proyectodam.fichappclient.util.AlertUtils;
 import com.proyectodam.fichappclient.util.controlhorario.EmpleadoBorradoUtil;
@@ -44,10 +45,14 @@ public class ControlHorarioEmpleadorController {
 
     private final ControlHorarioEmpleadorService controlHorarioEmpleadorService = new ControlHorarioEmpleadorService();
 
-    private final EmpleadoBorradoUtil empleadoBorradoUtil = new EmpleadoBorradoUtil(controlHorarioEmpleadorService);
+    private EmpleadoBorradoUtil empleadoBorradoUtil;
+
+    private final ControlHorarioEmpleadorEmpleadoService controlHorarioEmpleadorEmpleadoService = new ControlHorarioEmpleadorEmpleadoService();
 
     @FXML
     public void initialize() throws Exception {
+        empleadoBorradoUtil = new EmpleadoBorradoUtil(controlHorarioEmpleadorService, controlHorarioEmpleadorEmpleadoService);
+
         cargarDepartamentos();
         cargarRoles();
         UnaryOperator<TextFormatter.Change> filtro = change -> {
@@ -83,17 +88,18 @@ public class ControlHorarioEmpleadorController {
 
         EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, SessionData.getInstance().getEmpleados(), columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado);
 
-        botonEditar.setOnAction(e -> {
+   /*     botonEditar.setOnAction(e -> {
             EmpleadoDTO empleadoDTO = tablaEmpleados.getSelectionModel().getSelectedItem();
             if(empleadoDTO == null) {
                 AlertUtils.mostrarAdvertencia("Advertencia", "Tienes que seleccionar un empleado");
+                return;
             }
             try {
                 formularioEditarEmpleado(empleadoDTO);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-        });
+        });*/
     }
 
     private void cargarDepartamentos()  {
@@ -209,10 +215,15 @@ public class ControlHorarioEmpleadorController {
         try {
             EmpleadoDTO resultado = controlHorarioEmpleadorService.altaRapidaEmpleado(altaRapidaEmpleadoDTO);
             if (resultado != null) {
-                resultado.setDepartamentoDTO(departamentoDTOComboBox.getValue());
-                resultado.setRolDTO(rolDTOComboBox.getValue());
-
+                resultado.setDepartamento(departamentoDTOComboBox.getValue().getNombre());
+                resultado.setRol(rolDTOComboBox.getValue().getNombre());
+                resultado.setFechaAlta(datePickerFechaAlta.getValue());
+                resultado.setEstado("ACTIVO");
                 resultado.setDni(txtDni.getText());
+              /*  resultado.setDepartamentoDTO(departamentoDTOComboBox.getValue());
+                resultado.setRolDTO(rolDTOComboBox.getValue());*/
+
+
 
                // altaRapidaEmpleados.add(resultado);
                 SessionData.getInstance().getEmpleados().add(resultado);
@@ -265,7 +276,7 @@ public class ControlHorarioEmpleadorController {
         TextField dniTextField = new TextField(empleadoDTO.getDni());
         TextField estadoTextField = new TextField(empleadoDTO.getEstado());
 
-        DatePicker fechaAltaDatePicker = new DatePicker(empleadoDTO.getFechaAltaSistema());
+        DatePicker fechaAltaDatePicker = new DatePicker(empleadoDTO.getFechaAlta());
         DatePicker fechaNacimientoDatePicker = new DatePicker(empleadoDTO.getFechaNacimiento());
 
         ComboBox<DepartamentoDTO> departamentoDTOComboBoxForm = new ComboBox<>();
@@ -378,7 +389,7 @@ public class ControlHorarioEmpleadorController {
             empleadoDTO.setDepartamentoDTO(departamentoDTOComboBoxForm.getValue());
             empleadoDTO.setRolDTO(rolDTOComboBoxForm.getValue());
             empleadoDTO.setDni(dniTextField.getText());
-            empleadoDTO.setFechaAltaSistema(fechaAltaDatePicker.getValue());
+            empleadoDTO.setFechaAlta(fechaAltaDatePicker.getValue());
             empleadoDTO.setFechaNacimiento(fechaNacimientoDatePicker.getValue());
             empleadoDTO.setEstado(estadoTextField.getText());
 
@@ -407,7 +418,7 @@ public class ControlHorarioEmpleadorController {
        altaRapidaEmpleadoDTO.setDireccion(empleadoDTO.getDireccion());
        altaRapidaEmpleadoDTO.setTelefono(empleadoDTO.getTelefono());
        altaRapidaEmpleadoDTO.setDni(empleadoDTO.getDni());
-       altaRapidaEmpleadoDTO.setFechaAlta(empleadoDTO.getFechaAltaSistema());
+       altaRapidaEmpleadoDTO.setFechaAlta(empleadoDTO.getFechaAlta());
        altaRapidaEmpleadoDTO.setFechaNacimiento(empleadoDTO.getFechaNacimiento());
        altaRapidaEmpleadoDTO.setEstado(empleadoDTO.getEstado());
 

@@ -54,7 +54,7 @@
 
     <HBox alignment="CENTER_RIGHT" spacing="10">
         <Button text="Editar" fx:id="botonEditar" /> <!-- onAction="#botonEditarEmpleado" -->
-        <Button text="Eliminar" fx:id="botonEliminar"/> <!-- onAction="#botonEliminarEmpleado" -->
+        <Button text="Eliminar" fx:id="botonEliminar" onAction="#botonEliminarEmpleado"/>
         <Button text="Ver detalle" fx:id="botonVerDetalle"/> <!--onAction="#botonVerDetalleEmpleado" -->
     </HBox>
 
