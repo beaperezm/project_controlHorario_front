@@ -1,7 +1,6 @@
 package com.proyectodam.fichappclient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
@@ -14,13 +13,14 @@ public class EmpleadoDTO {
     private String email;
     private String direccion;
     private String telefono;
-    @JsonProperty("dni_nie")
     private String dni;
     private String estado;
-    private LocalDate fechaAltaSistema;
+    private LocalDate fechaAlta;
     private LocalDate fechaNacimiento;
     private DepartamentoDTO departamentoDTO;
     private RolDTO rolDTO;
+    private String departamento;
+    private String rol;
 
 
     public int getIdEmpleado() {
@@ -71,12 +71,12 @@ public class EmpleadoDTO {
         this.estado = estado;
     }
 
-    public LocalDate getFechaAltaSistema() {
-        return fechaAltaSistema;
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
     }
 
-    public void setFechaAltaSistema(LocalDate fechaAltaSistema) {
-        this.fechaAltaSistema = fechaAltaSistema;
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 
     public String getDireccion() {
@@ -117,5 +117,21 @@ public class EmpleadoDTO {
 
     public void setRolDTO(RolDTO rolDTO) {
         this.rolDTO = rolDTO;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

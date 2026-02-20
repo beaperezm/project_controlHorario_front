@@ -4,12 +4,16 @@ import com.proyectodam.fichappclient.model.DepartamentoDTO;
 import com.proyectodam.fichappclient.model.EmpleadoDTO;
 import com.proyectodam.fichappclient.model.EstadoDTO;
 import com.proyectodam.fichappclient.model.RolDTO;
+import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorEmpleadoService;
 import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorService;
 import com.proyectodam.fichappclient.util.AlertUtils;
+import com.proyectodam.fichappclient.util.SessionData;
+import com.proyectodam.fichappclient.util.controlhorario.EmpleadoBorradoUtil;
 import com.proyectodam.fichappclient.util.controlhorario.EmpleadoTablaUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -30,11 +34,15 @@ public class ControlHorarioEmpleadorEmpleadoController {
     @FXML
     private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
     private final ControlHorarioEmpleadorService controlHorarioEmpleadorService = new ControlHorarioEmpleadorService();
+    private final ControlHorarioEmpleadorEmpleadoService controlHorarioEmpleadorEmpleadoService = new ControlHorarioEmpleadorEmpleadoService();
 
     private final ObservableList<EmpleadoDTO> listadoEmpleados = FXCollections.observableArrayList();
 
+    private EmpleadoBorradoUtil empleadoBorradoUtil;
+
     @FXML
     public void initialize() {
+        empleadoBorradoUtil = new EmpleadoBorradoUtil(controlHorarioEmpleadorService, controlHorarioEmpleadorEmpleadoService);
         cargarDepartamentos();
         cargarRoles();
 
@@ -113,7 +121,7 @@ public class ControlHorarioEmpleadorEmpleadoController {
 
         new Thread(() -> {
             try {
-                List<EmpleadoDTO> listaEmpleados = controlHorarioEmpleadorService.getAllEmpleados();
+                List<EmpleadoDTO> listaEmpleados = controlHorarioEmpleadorEmpleadoService.getAllEmpleados();
 
                 Platform.runLater(() ->
                     listadoEmpleados.setAll(listaEmpleados)
@@ -127,5 +135,21 @@ public class ControlHorarioEmpleadorEmpleadoController {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+
+    @FXML
+    private void botonEliminarEmpleado(ActionEvent event) {
+
+        EmpleadoDTO empleadoDTO = tablaEmpleados.getSelectionModel().getSelectedItem();
+        if(empleadoDTO == null) {
+            AlertUtils.mostrarAdvertencia("Advertencia", "Tienes que seleccionar un empleado");
+            return;
+        }
+
+        empleadoBorradoUtil.borradoLogicoEmpleado(empleadoDTO);
+
+        cargarEmpleados();
+
+
     }
 }
