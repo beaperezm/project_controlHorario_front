@@ -1,0 +1,12 @@
+/* Main CSS - Fich-App Theme (Prototype) */
+/* This file now acts as an entry point importing all modules */
+
+@import "variables.css";
+@import "tipografia.css";
+@import "botones.css";
+@import "navegacion.css";
+@import "formularios.css";
+@import "contenedores.css";
+@import "tablas.css";
+@import "calendario.css";
+@import "utilidades.css";

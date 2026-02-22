@@ -1,0 +1,104 @@
+/* Estilos de Botones */
+
+/* Home Menu Tiles */
+.tarjeta-boton {
+    /* Subtle Gradient for premium feel */
+    -fx-background-color: linear-gradient(to bottom right, #B2DFDB, #80CBC4);
+    -fx-text-fill: #00695C;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Segoe UI Semibold';
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 16px;
+    /* Soft, deep shadow */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 77, 64, 0.15), 10, 0, 0, 4);
+    -fx-cursor: hand;
+    -fx-content-display: top;
+}
+
+.tarjeta-boton:hover {
+    -fx-background-color: linear-gradient(to bottom right, #80CBC4, #4DB6AC);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 77, 64, 0.25), 12, 0, 0, 6);
+    -fx-translate-y: -2px;
+    /* Simulation of lift */
+}
+
+.tarjeta-boton-secundaria {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #5D4037;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Segoe UI Semibold';
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-radius: 16px;
+    -fx-border-color: #D7CCC8;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(93, 64, 55, 0.1), 8, 0, 0, 3);
+}
+
+.tarjeta-boton-secundaria:hover {
+    -fx-background-color: #FFF8F6;
+    -fx-border-color: #8D6E63;
+    -fx-effect: dropshadow(three-pass-box, rgba(93, 64, 55, 0.2), 10, 0, 0, 5);
+}
+
+/* Base Components */
+.button {
+    -fx-background-color: -fx-primary;
+    background-color: #5D4037;
+    -fx-text-fill: white;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 20px;
+    padding: 10px 20px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-effect: dropshadow(three-pass-box, rgba(93, 64, 55, 0.2), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: -fx-primary-light;
+    background-color: #8D6E63;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-primary-dark;
+    background-color: #3E2723;
+}
+
+/* Special Buttons */
+.boton-entrada {
+    -fx-background-color: -fx-success;
+    background-color: #4CAF50;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.boton-entrada:hover {
+    -fx-background-color: #81C784;
+}
+
+.boton-salida {
+    -fx-background-color: -fx-danger;
+    background-color: #F44336;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.boton-salida:hover {
+    -fx-background-color: #E57373;
+}
+
+.boton-pausa {
+    -fx-background-color: -fx-warning;
+    background-color: #FF9800;
+}
+
+.button.borde {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-border-color: -fx-primary;
+    border-color: #5D4037;
+    -fx-border-width: 1.5px;
+    -fx-text-fill: -fx-primary;
+}

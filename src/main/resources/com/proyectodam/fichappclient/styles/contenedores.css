@@ -1,0 +1,14 @@
+/* Contenedores y Layout */
+.tarjeta {
+    -fx-background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    -fx-background-radius: 12px;
+    border-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(93, 64, 55, 0.05), 10, 0, 0, 4);
+    -fx-padding: 24px;
+    padding: 24px;
+    -fx-border-color: #EFEBE9;
+    -fx-border-width: 1;
+}
+
+.widget-reloj {}
