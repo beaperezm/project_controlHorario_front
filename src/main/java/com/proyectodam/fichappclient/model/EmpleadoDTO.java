@@ -15,8 +15,12 @@ public class EmpleadoDTO {
     private String telefono;
     private String dni;
     private String estado;
-    private LocalDate fechaAltaSistema;
+    private LocalDate fechaAlta;
     private LocalDate fechaNacimiento;
+    private DepartamentoDTO departamentoDTO;
+    private RolDTO rolDTO;
+    private String departamento;
+    private String rol;
 
 
     public int getIdEmpleado() {
@@ -67,12 +71,12 @@ public class EmpleadoDTO {
         this.estado = estado;
     }
 
-    public LocalDate getFechaAltaSistema() {
-        return fechaAltaSistema;
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
     }
 
-    public void setFechaAltaSistema(LocalDate fechaAltaSistema) {
-        this.fechaAltaSistema = fechaAltaSistema;
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 
     public String getDireccion() {
@@ -97,5 +101,37 @@ public class EmpleadoDTO {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public DepartamentoDTO getDepartamentoDTO() {
+        return departamentoDTO;
+    }
+
+    public void setDepartamentoDTO(DepartamentoDTO departamentoDTO) {
+        this.departamentoDTO = departamentoDTO;
+    }
+
+    public RolDTO getRolDTO() {
+        return rolDTO;
+    }
+
+    public void setRolDTO(RolDTO rolDTO) {
+        this.rolDTO = rolDTO;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

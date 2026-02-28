@@ -1,4 +1,4 @@
-package com.proyectodam.fichappclient.service;
+package com.proyectodam.fichappclient.service.controlhorario;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -10,20 +10,21 @@ import com.proyectodam.fichappclient.model.RolDTO;
 import com.proyectodam.fichappclient.util.ApiClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.List;
 
-public class ControlHorarioService {
+public class ControlHorarioEmpleadorService {
 
     private ApiClient apiClient = new ApiClient();
     private ObjectMapper objectMapper = new ObjectMapper();
 
 
-    public ControlHorarioService(ApiClient apiClient, ObjectMapper objectMapper) {
+    public ControlHorarioEmpleadorService(ApiClient apiClient, ObjectMapper objectMapper) {
         this.apiClient = apiClient;
         this.objectMapper = objectMapper;
     }
 
-    public ControlHorarioService() {
+    public ControlHorarioEmpleadorService() {
         this.apiClient = apiClient = new ApiClient();
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -50,6 +51,17 @@ public class ControlHorarioService {
         public void borrarEmpleado(int idEmpleado) throws Exception {
         apiClient.delete("/empleados/empleado/" + idEmpleado);
         }
+
+        public EmpleadoDTO editarEmpleado(int idEmpleado, AltaRapidaEmpleadoDTO altaRapidaEmpleadoDTO) throws IOException, InterruptedException {
+            String requestBody = objectMapper.writeValueAsString(altaRapidaEmpleadoDTO);
+            String respuesta = apiClient.put("/empleados/empleado/" + idEmpleado, requestBody);
+            return objectMapper.readValue(respuesta, EmpleadoDTO.class);
+        }
+
+    public List<EmpleadoDTO> getAllEmpleados() throws Exception{
+        String response = apiClient.get("/empleados/all");
+        return objectMapper.readValue(response, new TypeReference<List<EmpleadoDTO>>() {});
+    }
 
 
 }

@@ -10,7 +10,7 @@ import java.net.http.HttpResponse;
 
 public class ApiClient {
 
-    private final String BASE_URL = "http://localhost:8082";
+    private final String BASE_URL = "http://localhost:8080";
     private final HttpClient httpClient = HttpClient.newHttpClient();
 
     public String get(String endpoint) throws IOException, InterruptedException {
