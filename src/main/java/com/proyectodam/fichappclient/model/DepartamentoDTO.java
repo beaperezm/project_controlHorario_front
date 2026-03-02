@@ -2,6 +2,8 @@ package com.proyectodam.fichappclient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartamentoDTO {
 
@@ -27,5 +29,18 @@ public class DepartamentoDTO {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DepartamentoDTO that = (DepartamentoDTO) o;
+        return idDepartamento == that.idDepartamento;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(idDepartamento);
     }
 }

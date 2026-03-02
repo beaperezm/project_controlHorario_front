@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.proyectodam.fichappclient.controller.ControlHorario.EmpleadoFormularioEditarController"
+      hgap="10" vgap="10">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label fx:id="nombreLabel" text="Nombre: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="nombreTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Label fx:id="apellidosLabel" text="Apellidos: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="apellidosTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <Label fx:id="correoLabel" text="Correo electrónico: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="correoTextField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label fx:id="direccionLabel" text="Dirección: " GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <TextField fx:id="direccionTextField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <Label fx:id="telefonoLabel" text="Teléfono: " GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextField fx:id="telefonoTextField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+
+    <Label fx:id="departamentoLabel" text="Departamento: " GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="departamentoDTOComboBoxForm" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+    <Label fx:id="rolLabel" text="Rol: " GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="rolDTOComboBoxForm"  GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+    <Label fx:id="dniLabel" text="Dni: " GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+    <TextField fx:id="dniTextField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+
+    <Label fx:id="fechaAltaLabel" text="Fecha de Alta: " GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+    <DatePicker fx:id="fechaAltaDatePicker" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+
+    <Label fx:id="fechaNacimientoLabel" text="Fecha de Nacimiento: " GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+    <DatePicker fx:id="fechaNacimientoDatePicker" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+
+    <Label fx:id="estadoLabel" text="Estado: " GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="estadoComboBox" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+
+    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="11" GridPane.columnIndex="1">
+        <Button text="Guardar" fx:id="botonGuardar" onAction="#botonGuardarEmpleadoEditado"/>
+        <Button text="Cancelar" fx:id="botonCancelar" onAction="#botonCancelarEmpleadoEditado"/>
+    </HBox>
+
+
+</GridPane>
