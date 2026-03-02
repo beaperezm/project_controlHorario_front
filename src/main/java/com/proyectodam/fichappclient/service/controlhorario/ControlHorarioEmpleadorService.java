@@ -3,10 +3,7 @@ package com.proyectodam.fichappclient.service.controlhorario;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.proyectodam.fichappclient.model.AltaRapidaEmpleadoDTO;
-import com.proyectodam.fichappclient.model.DepartamentoDTO;
-import com.proyectodam.fichappclient.model.EmpleadoDTO;
-import com.proyectodam.fichappclient.model.RolDTO;
+import com.proyectodam.fichappclient.model.*;
 import com.proyectodam.fichappclient.util.ApiClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

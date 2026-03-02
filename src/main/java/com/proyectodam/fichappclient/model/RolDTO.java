@@ -2,6 +2,8 @@ package com.proyectodam.fichappclient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RolDTO {
 
@@ -20,6 +22,7 @@ public class RolDTO {
         return nombre;
     }
 
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -28,4 +31,5 @@ public class RolDTO {
     public String toString() {
         return nombre;
     }
+
 }
