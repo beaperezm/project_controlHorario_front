@@ -1,12 +1,14 @@
 package com.proyectodam.fichappclient.controller;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
@@ -15,7 +17,6 @@ import java.util.Optional;
 
 public class VacacionesController {
 
-    @FXML private Label tituloLabel;
     @FXML private Label estadoLabel;
 
     @FXML private TableView<VacacionesDTO> tablaSolicitudes;
@@ -31,16 +32,17 @@ public class VacacionesController {
 
     @FXML
     private void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        colInicio.setCellValueFactory(new PropertyValueFactory<>("inicio"));
-        colFin.setCellValueFactory(new PropertyValueFactory<>("fin"));
-        colDias.setCellValueFactory(new PropertyValueFactory<>("dias"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        // Sin PropertyValueFactory => sin líos de módulos/reflexión
+        colId.setCellValueFactory(c -> new SimpleIntegerProperty(c.getValue().getId()).asObject());
+        colTipo.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTipo()));
+        colInicio.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getInicio()));
+        colFin.setCellValueFactory(c -> new SimpleObjectProperty<>(c.getValue().getFin()));
+        colDias.setCellValueFactory(c -> new SimpleIntegerProperty(c.getValue().getDias()).asObject());
+        colEstado.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getEstado()));
 
         tablaSolicitudes.setItems(datos);
 
-        // Demo inicial (puedes quitarlo cuando conectes API)
+        // Demo inicial
         datos.add(new VacacionesDTO(
                 autoincId++, "VACACIONES",
                 LocalDate.now().plusDays(2), LocalDate.now().plusDays(7),
@@ -101,12 +103,12 @@ public class VacacionesController {
             LocalDate fin = dpFin.getValue();
 
             if (fin.isBefore(ini)) {
-                new Alert(Alert.AlertType.ERROR, "La fecha fin no puede ser anterior a la fecha inicio.")
-                        .showAndWait();
+                new Alert(Alert.AlertType.ERROR,
+                        "La fecha fin no puede ser anterior a la fecha inicio.").showAndWait();
                 return null;
             }
 
-            int dias = (int) ChronoUnit.DAYS.between(ini, fin) + 1; // inclusivo
+            int dias = (int) ChronoUnit.DAYS.between(ini, fin) + 1;
             return new VacacionesDTO(autoincId++, cbTipo.getValue(), ini, fin, dias, "PENDIENTE");
         });
 
@@ -122,11 +124,7 @@ public class VacacionesController {
         estadoLabel.setText("Refrescar (pendiente de API)...");
     }
 
-    @FXML
-    private void onProbarClick() {
-        // si no lo quieres, déjalo vacío o quita el botón del FXML
-    }
-
+    // DTO simple
     public static class VacacionesDTO {
         private final int id;
         private final String tipo;

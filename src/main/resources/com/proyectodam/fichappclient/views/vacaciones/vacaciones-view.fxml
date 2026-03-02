@@ -3,14 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.proyectodam.fichappclient.controller.VacacionesController"
       spacing="12"
       style="-fx-padding: 16;">
 
-    <Label fx:id="tituloLabel"
-           text="Módulo de Vacaciones"
+    <Label text="Módulo de Vacaciones"
            style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
     <HBox spacing="10">
@@ -32,5 +31,3 @@
     </TableView>
 
 </VBox>
-
-
