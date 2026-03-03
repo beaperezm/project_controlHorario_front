@@ -33,16 +33,17 @@
 
             <HBox spacing="15.0" alignment="CENTER_LEFT">
                 <children>
-                    <TextField fx:id="searchField" promptText="Buscar por nombre" prefWidth="250.0" />
+                    <TextField fx:id="searchEmpleadoField" promptText="Buscar por nombre de empleado" prefWidth="250.0" />
+                    <TextField fx:id="searchField" promptText="Buscar por archivo" prefWidth="250.0" />
                     <ComboBox fx:id="typeCombo" promptText="Tipo Documento" prefWidth="200.0" />
-                    <ComboBox fx:id="groupCombo" promptText="Grupo" prefWidth="200.0" />
+                    <ComboBox fx:id="groupCombo" promptText="Departamento" prefWidth="200.0" />
                 </children>
             </HBox>
 
             <HBox spacing="10.0" alignment="CENTER_RIGHT">
                 <children>
                     <Button text="Aplicar filtro" styleClass="boton-primario" />
-                    <Button text="Limpiar" styleClass="boton-secundario" />
+                    <Button text="Limpiar" styleClass="boton-secundario" onAction="#limpiarFiltros" />
                 </children>
             </HBox>
         </children>
@@ -58,9 +59,9 @@
                             <CheckBox fx:id="selectAllCheck" mnemonicParsing="false" />
                         </graphic>
                     </TableColumn>
-                    <TableColumn fx:id="colName" text="Nombre" prefWidth="300.0" style="-fx-alignment: CENTER;" />
-                    <TableColumn fx:id="colType" text="Tipo Documento" prefWidth="150.0" style="-fx-alignment: CENTER;" />
-                    <TableColumn fx:id="colGroup" text="Grupo" prefWidth="200.0" style="-fx-alignment: CENTER;" />
+                    <TableColumn fx:id="colName" text="Nombre Empleado" prefWidth="250.0" style="-fx-alignment: CENTER;" />
+                    <TableColumn fx:id="colType" text="Nombre Documento" prefWidth="250.0" style="-fx-alignment: CENTER;" />
+                    <TableColumn fx:id="colGroup" text="Tipo de Documento" prefWidth="150.0" style="-fx-alignment: CENTER;" />
                     <TableColumn fx:id="colActions" text="Acción Rápida" prefWidth="120.0" style="-fx-alignment: CENTER;" />
                 </columns>
                 <columnResizePolicy>
@@ -73,22 +74,22 @@
                 <children>
                     <Label fx:id="paginationLabel" text="Mostrando 0 de 0" style="-fx-text-fill: -fx-text-secondary;" />
                     <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Abrir" styleClass="boton-secundario" />
-                    <Button text="Cargar" styleClass="boton-secundario" />
+                    <Button text="Refrescar" styleClass="boton-secundario" onAction="#initialize" />
+                    <Button text="Cargar Documento" styleClass="boton-secundario" onAction="#accionSubirSintetica" />
                     <HBox spacing="5.0">
-                        <Button styleClass="boton-icono">
+                        <Button styleClass="boton-icono" onAction="#paginaAnterior">
                             <graphic>
-                                <SVGPath content="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                <SVGPath content="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="white"/>
                             </graphic>
                         </Button>
-                        <Button styleClass="boton-icono">
+                        <Button styleClass="boton-icono" onAction="#paginaSiguiente">
                             <graphic>
-                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="white"/>
                             </graphic>
                         </Button>
-                        <Button styleClass="boton-icono-peligro">
+                        <Button styleClass="boton-icono-peligro" onAction="#borrarSeleccion">
                             <graphic>
-                                <SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="#d32f2f"/>
+                                <SVGPath content="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" fill="white"/>
                             </graphic>
                         </Button>
                     </HBox>

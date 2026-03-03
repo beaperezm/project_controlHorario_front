@@ -51,4 +51,10 @@ public class ControlHorarioService {
         apiClient.delete("/empleados/empleado/" + idEmpleado);
     }
 
+    public List<EmpleadoDTO> getAllEmpleados() throws Exception {
+        String response = apiClient.get("/empleados/all");
+        return objectMapper.readValue(response, new TypeReference<List<EmpleadoDTO>>() {
+        });
+    }
+
 }

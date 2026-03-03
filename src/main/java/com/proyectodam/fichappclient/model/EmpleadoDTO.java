@@ -97,4 +97,13 @@ public class EmpleadoDTO {
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    @Override
+    public String toString() {
+        if (idEmpleado == -1)
+            return nombre != null ? nombre : "Todos";
+        String n = nombre != null ? nombre : "";
+        String a = apellidos != null ? apellidos : "";
+        return (n + " " + a).trim();
+    }
 }

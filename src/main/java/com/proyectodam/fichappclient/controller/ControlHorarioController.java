@@ -3,7 +3,6 @@ package com.proyectodam.fichappclient.controller;
 import com.proyectodam.fichappclient.model.*;
 import com.proyectodam.fichappclient.service.ControlHorarioService;
 import com.proyectodam.fichappclient.util.AlertUtils;
-import com.proyectodam.fichappclient.util.ApiClient;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 public class ControlHorarioController {
@@ -80,6 +78,8 @@ public class ControlHorarioController {
         columnaParaCorreo.setCellValueFactory(altaRapida -> new SimpleStringProperty(altaRapida.getValue().getEmail()));
         columnaParaEstado
                 .setCellValueFactory(altaRapida -> new SimpleStringProperty(altaRapida.getValue().getEstado()));
+
+        configurarSeleccion();
     }
 
     private void cargarDepartamentos() {
