@@ -17,15 +17,23 @@ import java.util.Optional;
 
 public class VacacionesController {
 
-    @FXML private Label estadoLabel;
+    @FXML
+    private Label estadoLabel;
 
-    @FXML private TableView<VacacionesDTO> tablaSolicitudes;
-    @FXML private TableColumn<VacacionesDTO, Integer> colId;
-    @FXML private TableColumn<VacacionesDTO, String> colTipo;
-    @FXML private TableColumn<VacacionesDTO, LocalDate> colInicio;
-    @FXML private TableColumn<VacacionesDTO, LocalDate> colFin;
-    @FXML private TableColumn<VacacionesDTO, Integer> colDias;
-    @FXML private TableColumn<VacacionesDTO, String> colEstado;
+    @FXML
+    private TableView<VacacionesDTO> tablaSolicitudes;
+    @FXML
+    private TableColumn<VacacionesDTO, Integer> colId;
+    @FXML
+    private TableColumn<VacacionesDTO, String> colTipo;
+    @FXML
+    private TableColumn<VacacionesDTO, LocalDate> colInicio;
+    @FXML
+    private TableColumn<VacacionesDTO, LocalDate> colFin;
+    @FXML
+    private TableColumn<VacacionesDTO, Integer> colDias;
+    @FXML
+    private TableColumn<VacacionesDTO, String> colEstado;
 
     private final ObservableList<VacacionesDTO> datos = FXCollections.observableArrayList();
     private int autoincId = 1;
@@ -46,10 +54,8 @@ public class VacacionesController {
         datos.add(new VacacionesDTO(
                 autoincId++, "VACACIONES",
                 LocalDate.now().plusDays(2), LocalDate.now().plusDays(7),
-                6, "PENDIENTE"
-        ));
+                6, "PENDIENTE"));
 
-        estadoLabel.setText("Listo.");
     }
 
     @FXML
@@ -93,11 +99,11 @@ public class VacacionesController {
 
         Node okBtn = dialog.getDialogPane().lookupButton(btnGuardar);
         okBtn.disableProperty().bind(
-                dpInicio.valueProperty().isNull().or(dpFin.valueProperty().isNull())
-        );
+                dpInicio.valueProperty().isNull().or(dpFin.valueProperty().isNull()));
 
         dialog.setResultConverter(button -> {
-            if (button != btnGuardar) return null;
+            if (button != btnGuardar)
+                return null;
 
             LocalDate ini = dpInicio.getValue();
             LocalDate fin = dpFin.getValue();
@@ -142,11 +148,28 @@ public class VacacionesController {
             this.estado = estado;
         }
 
-        public int getId() { return id; }
-        public String getTipo() { return tipo; }
-        public LocalDate getInicio() { return inicio; }
-        public LocalDate getFin() { return fin; }
-        public int getDias() { return dias; }
-        public String getEstado() { return estado; }
+        public int getId() {
+            return id;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public LocalDate getInicio() {
+            return inicio;
+        }
+
+        public LocalDate getFin() {
+            return fin;
+        }
+
+        public int getDias() {
+            return dias;
+        }
+
+        public String getEstado() {
+            return estado;
+        }
     }
 }

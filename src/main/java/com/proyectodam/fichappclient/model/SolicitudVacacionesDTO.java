@@ -22,18 +22,52 @@ public class SolicitudVacacionesDTO {
     }
 
     // Getters (para TableView / PropertyValueFactory)
-    public int getId() { return id.get(); }
-    public String getTipo() { return tipo.get(); }
-    public LocalDate getInicio() { return inicio.get(); }
-    public LocalDate getFin() { return fin.get(); }
-    public int getDias() { return dias.get(); }
-    public String getEstado() { return estado.get(); }
+    public int getId() {
+        return id.get();
+    }
 
-    // Properties (por si luego quieres binding)
-    public IntegerProperty idProperty() { return id; }
-    public StringProperty tipoProperty() { return tipo; }
-    public ObjectProperty<LocalDate> inicioProperty() { return inicio; }
-    public ObjectProperty<LocalDate> finProperty() { return fin; }
-    public IntegerProperty diasProperty() { return dias; }
-    public StringProperty estadoProperty() { return estado; }
+    public String getTipo() {
+        return tipo.get();
+    }
+
+    public LocalDate getInicio() {
+        return inicio.get();
+    }
+
+    public LocalDate getFin() {
+        return fin.get();
+    }
+
+    public int getDias() {
+        return dias.get();
+    }
+
+    public String getEstado() {
+        return estado.get();
+    }
+
+    // Propiedades 
+    public IntegerProperty idProperty() {
+        return id;
+    }
+
+    public StringProperty tipoProperty() {
+        return tipo;
+    }
+
+    public ObjectProperty<LocalDate> inicioProperty() {
+        return inicio;
+    }
+
+    public ObjectProperty<LocalDate> finProperty() {
+        return fin;
+    }
+
+    public IntegerProperty diasProperty() {
+        return dias;
+    }
+
+    public StringProperty estadoProperty() {
+        return estado;
+    }
 }

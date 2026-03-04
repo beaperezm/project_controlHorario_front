@@ -1,0 +1,12 @@
+/* CSS Principal - Tema Fich-App */
+/* Este archivo actúa como punto de entrada importando todos los módulos */
+
+@import "variables.css";
+@import "tipografia.css";
+@import "botones.css";
+@import "navegacion.css";
+@import "formularios.css";
+@import "contenedores.css";
+@import "tablas.css";
+@import "calendario.css";
+@import "utilidades.css";

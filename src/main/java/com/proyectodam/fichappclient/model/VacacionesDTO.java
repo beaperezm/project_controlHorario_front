@@ -21,13 +21,35 @@ public class VacacionesDTO {
         this.motivo = motivo;
     }
 
-    public int getId() { return id; }
-    public String getTipo() { return tipo; }
-    public LocalDate getInicio() { return inicio; }
-    public LocalDate getFin() { return fin; }
-    public int getDias() { return dias; }
-    public String getEstado() { return estado; }
-    public String getMotivo() { return motivo; }
+    public int getId() {
+        return id;
+    }
 
-    public void setEstado(String estado) { this.estado = estado; }
+    public String getTipo() {
+        return tipo;
+    }
+
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public LocalDate getFin() {
+        return fin;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

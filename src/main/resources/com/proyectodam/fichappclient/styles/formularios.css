@@ -1,0 +1,17 @@
+/* Formularios */
+.text-field,
+.password-field {
+    -fx-background-color: -fx-surface;
+    background-color: #FFFFFF;
+    -fx-border-color: -fx-divider;
+    border-color: #D7CCC8;
+    -fx-border-radius: 4px;
+    -fx-padding: 10px;
+    -fx-text-fill: -fx-text-base;
+}
+
+.text-field:focused,
+.password-field:focused {
+    -fx-border-color: -fx-primary;
+    border-color: #5D4037;
+}
