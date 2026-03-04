@@ -1,0 +1,63 @@
+/* Calendario */
+.cuadricula-calendario {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.etiqueta-cabecera-calendario {
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-family: 'Segoe UI Semibold';
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-padding: 10 0;
+    -fx-border-color: -fx-divider;
+    -fx-border-width: 0 0 1 0;
+}
+
+.dia-calendario {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-text-base;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-min-height: 80px;
+    /* Hacer las celdas más altas */
+    -fx-padding: 5px;
+}
+
+.dia-calendario:hover {
+    -fx-background-color: #FBE9E7;
+    /* Fondo de acento claro */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+    -fx-translate-y: -1px;
+}
+
+.dia-calendario.inactivo {
+    -fx-text-fill: -fx-text-muted;
+    -fx-background-color: #FAFAFA;
+}
+
+.dia-calendario.aprobado {
+    -fx-background-color: #E8F5E9;
+    /* Verde claro */
+    -fx-border-color: #A5D6A7;
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: bold;
+}
+
+.dia-calendario.pendiente {
+    -fx-background-color: #FFF3E0;
+    /* Naranja claro */
+    -fx-border-color: #FFCC80;
+    -fx-text-fill: #EF6C00;
+}
+
+.dia-calendario.rechazado {
+    -fx-background-color: #FFEBEE;
+    /* Rojo claro */
+    -fx-border-color: #EF9A9A;
+    -fx-text-fill: #C62828;
+}

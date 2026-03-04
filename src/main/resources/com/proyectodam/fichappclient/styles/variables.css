@@ -1,0 +1,40 @@
+/* Variables Globales */
+.root {
+    /* Paleta de Colores - Prototipo v2 (Beige/Rosa) */
+    -fx-primary: #5D4037;
+    /* Marrón - Texto y Elementos Activos */
+    -fx-primary-dark: #3E2723;
+    -fx-primary-light: #8D6E63;
+
+    -fx-accent: #FF8A65;
+    /* Acento Salmón/Rosa - Más cálido */
+
+    -fx-success: #66BB6A;
+    /* Verde suave */
+    -fx-danger: #EF5350;
+    /* Rojo suave */
+    -fx-warning: #FFA726;
+    /* Naranja suave */
+
+    -fx-background: #FFF8F6;
+    /* Fondo Rosa/Blanco muy claro */
+    -fx-sidebar-bg: #EFEBE9;
+    /* Fondo Beige de la barra lateral */
+    -fx-surface: #FFFFFF;
+    /* Superficie blanca para tarjetas */
+
+    -fx-text-base: #4E342E;
+    /* Texto marrón oscuro */
+    -fx-text-muted: #A1887F;
+    /* Texto marrón atenuado */
+    -fx-divider: #D7CCC8;
+    /* Divisor beige */
+    -fx-text-secondary: #A1887F;
+
+    /* Configuración de fuentes */
+    -fx-font-family: 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    background-color: -fx-background;
+}
