@@ -1,6 +1,7 @@
-/* Estilos de Navegación "Middle Ground" - Clean & Modern */
+/* Estilos de Navegación "Punto medio" - Limpio y Moderno */
 .barra-lateral {
-    -fx-background-color: #F8F9FA; /* Gris muy suave */
+    -fx-background-color: #F8F9FA;
+    /* Gris muy suave */
     -fx-border-color: #E0E0E0;
     -fx-border-width: 0 1 0 0;
 }
@@ -17,26 +18,26 @@
 .barra-lateral .boton-lateral {
     /* Gradiente sutil para dar volumen como en la imagen */
     -fx-background-color: linear-gradient(to bottom, #FFFFFF 0%, #F5F5F5 100%);
-    
+
     /* Bordes redondeados y borde sutil */
     -fx-background-radius: 4px;
     -fx-border-radius: 4px;
     -fx-border-color: #D1D1D1;
     -fx-border-width: 1px;
-    
+
     /* Texto */
     -fx-text-fill: #555555;
     -fx-font-family: 'Segoe UI', sans-serif;
     -fx-font-size: 14px;
     -fx-alignment: center-left;
-    
+
     /* Espaciado */
     -fx-padding: 8 15;
     -fx-cursor: hand;
-    
+
     /* Sombra suave */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 2, 0, 0, 1);
-    
+
     /* Importante: Margen para separar los botones entre sí */
     /* top right bottom left */
     /* Pero como están en un VBox con spacing, usamos insets en el VBox o margen en el botón. 
@@ -61,20 +62,20 @@
     -fx-fill: #333333;
 }
 
-/* Estado Focused/Activo - Azul como en la referencia pero integrado */
+/* Estado Enfocado/Activo - Azul como en la referencia pero integrado */
 .barra-lateral .boton-lateral:focused,
 .barra-lateral .boton-lateral.activo {
     /* Fondo azul muy claro o gris con borde azul */
     -fx-background-color: linear-gradient(to bottom, #F0F8FF 0%, #E3F2FD 100%);
-    
+
     /* Borde azul */
     -fx-border-color: #2196F3;
     -fx-border-width: 1px;
-    
+
     /* Texto azul */
     -fx-text-fill: #1565C0;
     -fx-font-weight: bold;
-    
+
     /* Sombra azulada sutil */
     -fx-effect: dropshadow(three-pass-box, rgba(33, 150, 243, 0.15), 5, 0, 0, 0);
 }

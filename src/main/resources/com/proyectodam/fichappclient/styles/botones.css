@@ -1,8 +1,8 @@
 /* Estilos de Botones */
 
-/* Home Menu Tiles */
+/* Mosaicos del menú principal */
 .tarjeta-boton {
-    /* Subtle Gradient for premium feel */
+    /* Degradado sutil para un aspecto premium */
     -fx-background-color: linear-gradient(to bottom right, #B2DFDB, #80CBC4);
     -fx-text-fill: #00695C;
     -fx-font-size: 16px;
@@ -10,7 +10,7 @@
     -fx-font-weight: bold;
     -fx-alignment: center;
     -fx-background-radius: 16px;
-    /* Soft, deep shadow */
+    /* Sombra suave y profunda */
     -fx-effect: dropshadow(three-pass-box, rgba(0, 77, 64, 0.15), 10, 0, 0, 4);
     -fx-cursor: hand;
     -fx-content-display: top;
@@ -20,7 +20,7 @@
     -fx-background-color: linear-gradient(to bottom right, #80CBC4, #4DB6AC);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 77, 64, 0.25), 12, 0, 0, 6);
     -fx-translate-y: -2px;
-    /* Simulation of lift */
+    /* Simulación de elevación */
 }
 
 .tarjeta-boton-secundaria {
@@ -43,7 +43,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(93, 64, 55, 0.2), 10, 0, 0, 5);
 }
 
-/* Base Components */
+/* Componentes base */
 .button {
     -fx-background-color: -fx-primary;
     background-color: #5D4037;
@@ -66,7 +66,7 @@
     background-color: #3E2723;
 }
 
-/* Special Buttons */
+/* Botones especiales */
 .boton-entrada {
     -fx-background-color: -fx-success;
     background-color: #4CAF50;

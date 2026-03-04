@@ -98,11 +98,11 @@ public class ServicioNavegacion {
                 contentArea.getChildren().clear();
                 contentArea.getChildren().add(view);
             } else {
-                System.err.println("ContentArea is null. Cannot navigate to: " + fxmlPath);
+                System.err.println("El área de contenido es nula. No se puede navegar a: " + fxmlPath);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error navigating to: " + fxmlPath);
+            System.err.println("Error al navegar a: " + fxmlPath);
         }
     }
 

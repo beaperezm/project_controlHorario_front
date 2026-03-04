@@ -15,11 +15,11 @@
    xmlns="http://javafx.com/javafx/17"
    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.EstructuraPrincipalController">
 
-   <!-- Left Sidebar -->
+   <!-- Barra lateral izquierda -->
    <left>
       <BorderPane prefWidth="240.0" styleClass="barra-lateral" BorderPane.alignment="CENTER">
          <top>
-            <!-- Logo Box -->
+            <!-- Caja del Logo -->
             <VBox prefHeight="80.0" alignment="CENTER_LEFT" styleClass="caja-logo" BorderPane.alignment="CENTER">
                <children>
                   <Label styleClass="encabezado" text="Fich-App">
@@ -35,7 +35,7 @@
          </top>
 
          <center>
-            <!-- Menu Items -->
+            <!-- Elementos del Menú -->
             <VBox spacing="8.0" BorderPane.alignment="TOP_CENTER">
                <children>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showDashboard" styleClass="boton-lateral" text="Panel General">
@@ -43,11 +43,23 @@
                         <javafx.scene.shape.SVGPath content="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" styleClass="icono-lateral"/>
                      </graphic>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showControlHorario" styleClass="boton-lateral" text="Control Horario">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#toggleControlHorario" styleClass="boton-lateral" text="Control Horario">
                      <graphic>
-                        <javafx.scene.shape.SVGPath content="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" styleClass="icono-lateral"/>
+                        <javafx.scene.shape.SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8c4.42 0 8 3.58 8 8s-3.58 8-8 8zm0.5-13H11v6l5.25 3.15 0.75-1.23-4.5-2.67V7z" styleClass="icono-lateral"/>
                      </graphic>
                   </Button>
+                  <VBox fx:id="controlHorarioSubmenu" managed="false" visible="false" spacing="5.0">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showEmpleados" styleClass="boton-lateral" text="Empleados">
+                           <graphic>
+                              <javafx.scene.shape.SVGPath content="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-0.29 0-0.62 0.02-0.97 0.05 1.16 0.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" styleClass="icono-lateral"/>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showVacations" styleClass="boton-lateral" text="Vacaciones">
                      <graphic>
                         <javafx.scene.shape.SVGPath content="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" styleClass="icono-lateral"/>
@@ -108,7 +120,7 @@
          </center>
 
          <bottom>
-            <!-- Logout/User at bottom -->
+            <!-- Cerrar sesión/Usuario en la parte inferior -->
             <VBox alignment="BOTTOM_LEFT" prefHeight="60.0" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" styleClass="boton-lateral" text="Cerrar Sesión" />

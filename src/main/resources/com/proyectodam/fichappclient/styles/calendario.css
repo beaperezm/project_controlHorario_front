@@ -24,13 +24,13 @@
     -fx-font-size: 14px;
     -fx-cursor: hand;
     -fx-min-height: 80px;
-    /* Make cells taller */
+    /* Hacer las celdas más altas */
     -fx-padding: 5px;
 }
 
 .dia-calendario:hover {
     -fx-background-color: #FBE9E7;
-    /* Light accent background */
+    /* Fondo de acento claro */
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
     -fx-translate-y: -1px;
 }
@@ -42,7 +42,7 @@
 
 .dia-calendario.aprobado {
     -fx-background-color: #E8F5E9;
-    /* Light Green */
+    /* Verde claro */
     -fx-border-color: #A5D6A7;
     -fx-text-fill: #2E7D32;
     -fx-font-weight: bold;
@@ -50,14 +50,14 @@
 
 .dia-calendario.pendiente {
     -fx-background-color: #FFF3E0;
-    /* Light Orange */
+    /* Naranja claro */
     -fx-border-color: #FFCC80;
     -fx-text-fill: #EF6C00;
 }
 
 .dia-calendario.rechazado {
     -fx-background-color: #FFEBEE;
-    /* Light Red */
+    /* Rojo claro */
     -fx-border-color: #EF9A9A;
     -fx-text-fill: #C62828;
 }

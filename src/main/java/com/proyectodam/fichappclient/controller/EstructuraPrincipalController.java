@@ -14,6 +14,9 @@ public class EstructuraPrincipalController {
     private VBox documentsSubmenu;
 
     @FXML
+    private VBox controlHorarioSubmenu;
+
+    @FXML
     public void initialize() {
         // Inicializar ServicioNavegacion con el área de contenido
         ServicioNavegacion.getInstance().setContentArea(contentArea);
@@ -26,8 +29,21 @@ public class EstructuraPrincipalController {
     }
 
     @FXML
-    public void showControlHorario() {
-        ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/control-horario.fxml");
+    public void toggleControlHorario() {
+        boolean isVisible = controlHorarioSubmenu.isVisible();
+        controlHorarioSubmenu.setVisible(!isVisible);
+        controlHorarioSubmenu.setManaged(!isVisible);
+
+        // Navegar a la vista de control horario al abrir la sección
+        if (!isVisible) {
+            ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/control-horario.fxml");
+        }
+    }
+
+    @FXML
+    public void showEmpleados() {
+        ServicioNavegacion.getInstance().navigateTo(
+                "/com/proyectodam/fichappclient/views/controlhorario/control-horario-empleador-empleado.fxml");
     }
 
     @FXML
@@ -38,8 +54,8 @@ public class EstructuraPrincipalController {
 
     @FXML
     public void showVacations() {
-        System.out.println("Mostrar Vacaciones - Aún no implementado");
-        // ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/vacaciones-view.fxml");
+        ServicioNavegacion.getInstance()
+                .navigateTo("/com/proyectodam/fichappclient/views/vacaciones/vacaciones-view.fxml");
     }
 
     @FXML
@@ -57,7 +73,6 @@ public class EstructuraPrincipalController {
     @FXML
     public void showNominas() {
         System.out.println("Navegar a Nóminas");
-        // TODO: NavigationService.getInstance().navigateTo("...");
     }
 
     @FXML

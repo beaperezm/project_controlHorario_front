@@ -21,14 +21,14 @@ public class DocumentoDTO {
     private String nombreEmpleado;
     private String departamento;
 
-    // UI Helpers (Transient properties not from API)
+    // Auxiliares de UI (propiedades transitorias, no provienen de la API)
     private transient boolean selected;
 
     public DocumentoDTO() {
         this.selected = false;
     }
 
-    // Getters and Setters
+    // Getters y Setters
 
     public Long getId() {
         return id;

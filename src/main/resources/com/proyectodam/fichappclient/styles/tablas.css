@@ -30,5 +30,5 @@
 
 .celda-fila-tabla:odd {
     -fx-background-color: #FFFDFC;
-    /* Very subtle alternation */
+    /* Alternancia muy sutil */
 }

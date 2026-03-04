@@ -21,7 +21,7 @@ public class ApiClient {
 
     public String get(String endpoint) throws IOException, InterruptedException {
         String fullUrl = getBaseUrl() + endpoint;
-        // System.out.println("Requesting: " + fullUrl); // Log para desarrollo
+        // System.out.println("Solicitando: " + fullUrl); // Log para desarrollo
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(fullUrl))

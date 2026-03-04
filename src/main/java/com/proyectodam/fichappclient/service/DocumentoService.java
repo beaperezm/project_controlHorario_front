@@ -96,7 +96,7 @@ public class DocumentoService {
         apiClient.delete("/documentos/" + idDocumento);
     }
 
-    // --- Helper para construir el Multipart Body de Java 11 ---
+    // --- Método auxiliar para construir el cuerpo Multipart de Java 11 ---
     private HttpRequest.BodyPublisher ofMimeMultipartData(File file, String nombreCustom, String categoria,
             String idEmpleado,
             String boundary) throws IOException {
@@ -130,7 +130,7 @@ public class DocumentoService {
         }
         byteArrays.add("\r\n".getBytes(StandardCharsets.UTF_8));
 
-        // Final boundary
+        // Límite final
         byteArrays.add(("--" + boundary + "--\r\n").getBytes(StandardCharsets.UTF_8));
 
         return HttpRequest.BodyPublishers.ofByteArrays(byteArrays);

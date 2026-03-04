@@ -15,6 +15,9 @@ public class EmpleadoDTO {
     private String telefono;
     private String dni;
     private String estado;
+    private String departamento;
+    private String rol;
+    private LocalDate fechaAlta;
     private LocalDate fechaAltaSistema;
     private LocalDate fechaNacimiento;
 
@@ -96,6 +99,30 @@ public class EmpleadoDTO {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public LocalDate getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 
     @Override

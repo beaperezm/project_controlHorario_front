@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import com.proyectodam.fichappclient.util.AppConfig;
 
 /**
  * Clase principal de la aplicación JavaFX.
@@ -26,6 +27,10 @@ public class MainApp extends Application {
 
         // Inicializar el servicio de navegación
         com.proyectodam.fichappclient.service.ServicioNavegacion.getInstance().setPrimaryStage(stage);
+
+        // Mostrar en consola el modo de conexión y la URL base calculada
+        System.out.println("Modo: " + AppConfig.getInstance().getModoActual()
+            + " | baseUrl: " + AppConfig.getInstance().getBaseUrl());
 
         stage.show();
     }

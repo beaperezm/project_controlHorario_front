@@ -1,5 +1,5 @@
-/* Main CSS - Fich-App Theme (Prototype) */
-/* This file now acts as an entry point importing all modules */
+/* CSS Principal - Tema Fich-App */
+/* Este archivo actúa como punto de entrada importando todos los módulos */
 
 @import "variables.css";
 @import "tipografia.css";

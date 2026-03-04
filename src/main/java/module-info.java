@@ -20,5 +20,6 @@ module com.proyectodam.fichappclient {
     exports com.proyectodam.fichappclient.enums;
 
     opens com.proyectodam.fichappclient.controller to javafx.fxml, javafx.base;
+    opens com.proyectodam.fichappclient.controller.ControlHorario to javafx.fxml, javafx.base;
     opens com.proyectodam.fichappclient.model to com.fasterxml.jackson.databind;
 }
