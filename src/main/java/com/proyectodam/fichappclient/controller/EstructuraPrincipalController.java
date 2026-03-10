@@ -24,7 +24,6 @@ public class EstructuraPrincipalController {
 
     @FXML
     public void showDashboard() {
-        System.out.println("Mostrar Dashboard - Aún no implementado o vista faltante");
         // ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/dashboard-view.fxml");
     }
 
@@ -48,7 +47,6 @@ public class EstructuraPrincipalController {
 
     @FXML
     public void showHistory() {
-        System.out.println("Mostrar Historial - Aún no implementado");
         // ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/history-view.fxml");
     }
 
@@ -72,7 +70,12 @@ public class EstructuraPrincipalController {
 
     @FXML
     public void showNominas() {
-        System.out.println("Navegar a Nóminas");
+        ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/nominas-view.fxml");
+    }
+
+    @FXML
+    public void showCalendario() {
+        ServicioNavegacion.getInstance().navigateTo("/com/proyectodam/fichappclient/views/calendario.fxml");
     }
 
     @FXML
@@ -102,12 +105,10 @@ public class EstructuraPrincipalController {
     @FXML
     public void showConfigEmpleados() {
         // Marcador de posición
-        System.out.println("Navegar a Configuración Empleados");
     }
 
     @FXML
     public void showConfigAsistencias() {
         // Marcador de posición
-        System.out.println("Navegar a Configuración Asistencias");
     }
 }

@@ -191,7 +191,7 @@ public class ControladorDocumentos {
 
                     // Cargar combos dinámicamente con la opción de 'Todos' y tipos base
                     List<String> tipDocs = new java.util.ArrayList<>(
-                            java.util.Arrays.asList("NÓMINA", "CONTRATO", "CERTIFICADO", "PRL", "OTROS"));
+                            java.util.Arrays.asList("CONTRATO", "CERTIFICADO", "PRL", "OTROS"));
                     listadoBackend.stream()
                             .map(doc -> doc.getCategoria() != null ? doc.getCategoria().toUpperCase() : "DESCONOCIDO")
                             .filter(cat -> !tipDocs.contains(cat))
@@ -327,7 +327,7 @@ public class ControladorDocumentos {
 
         ComboBox<String> categoriaCombo = new ComboBox<>();
         categoriaCombo.setPromptText("Elegir tipo...");
-        categoriaCombo.getItems().addAll("NÓMINA", "CONTRATO", "CERTIFICADO", "OTROS");
+        categoriaCombo.getItems().addAll("CONTRATO", "CERTIFICADO", "OTROS");
         categoriaCombo.setEditable(false);
         categoriaCombo.setMaxWidth(Double.MAX_VALUE);
 

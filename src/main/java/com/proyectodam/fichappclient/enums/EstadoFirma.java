@@ -3,7 +3,9 @@ package com.proyectodam.fichappclient.enums;
 public enum EstadoFirma {
     PENDIENTE("Pendiente de firma"),
     FIRMADO("Firmado"),
-    RECHAZADO("Rechazado");
+    RECHAZADO("Rechazado"),
+    NOTIFICADA("Notificada"),
+    FIRMA_EN_PROCESO("Firma en proceso");
 
     private final String displayName;
 
