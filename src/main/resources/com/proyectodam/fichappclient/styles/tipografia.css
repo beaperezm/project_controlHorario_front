@@ -1,0 +1,32 @@
+/* Tipografía */
+.texto-logo {
+    -fx-text-fill: -fx-primary;
+}
+
+.encabezado {
+    -fx-font-size: 26px;
+    font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary;
+}
+
+.subtitulo {
+    -fx-font-size: 18px;
+    font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary-light;
+}
+
+.label {
+    -fx-text-fill: -fx-text-base;
+}
+
+.label.tenue {
+    -fx-text-fill: -fx-text-muted;
+}
+
+.etiqueta-temporizador {
+    -fx-text-fill: -fx-primary-dark;
+    -fx-font-family: 'Monospaced';
+    -fx-font-weight: bold;
+}

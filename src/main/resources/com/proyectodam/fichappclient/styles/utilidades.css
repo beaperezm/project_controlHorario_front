@@ -1,0 +1,12 @@
+/* Utilidades */
+.estado-trabajando {
+    -fx-text-fill: -fx-success;
+}
+
+.estado-fuera {
+    -fx-text-fill: -fx-danger;
+}
+
+.estado-pausa {
+    -fx-text-fill: -fx-warning;
+}
