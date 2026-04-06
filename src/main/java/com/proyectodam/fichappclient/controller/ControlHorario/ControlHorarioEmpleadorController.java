@@ -31,11 +31,13 @@ public class ControlHorarioEmpleadorController {
     @FXML
     private ComboBox<RolDTO> rolDTOComboBox;
     @FXML
+    private ComboBox<HorarioDTO> horarioDTOComboBox;
+    @FXML
     private Button botonGuardar, botonEliminar, botonEditar;
     @FXML
     private TableView<EmpleadoDTO> tablaEmpleados;
     @FXML
-    private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
+    private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaHorario, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
 
     private ObservableList<EmpleadoDTO> altaRapidaEmpleados = FXCollections.observableArrayList();
 
@@ -51,6 +53,7 @@ public class ControlHorarioEmpleadorController {
 
         cargarDepartamentos();
         cargarRoles();
+        cargarHorarios();
         UnaryOperator<TextFormatter.Change> filtro = change -> {
             String nuevoTexto = change.getControlNewText();
 
@@ -95,7 +98,7 @@ public class ControlHorarioEmpleadorController {
             }
         });
 
-        EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, SessionData.getInstance().getEmpleados(), columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado);
+        EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, SessionData.getInstance().getEmpleados(), columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaHorario, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado);
 
     }
 
@@ -128,7 +131,6 @@ public class ControlHorarioEmpleadorController {
             e.printStackTrace();
             AlertUtils.mostrarError("Error", "No se pudieron cargar los departamentos");
         }
-
     }
 
     private void cargarRoles() {
@@ -144,7 +146,7 @@ public class ControlHorarioEmpleadorController {
                 }
             });
 
-            //Para que muestre departamento en el 'placeholder'
+            //Para que muestre rol en el 'placeholder'
             rolDTOComboBox.setButtonCell(new ListCell<>() {
                 @Override
                 protected void updateItem(RolDTO rolDTO, boolean estaVacio) {
@@ -165,6 +167,38 @@ public class ControlHorarioEmpleadorController {
 
     }
 
+    private void cargarHorarios()  {
+        try {
+            horarioDTOComboBox.getItems().setAll(controlHorarioEmpleadorService.getAllHorarios());
+
+            //Para que muestre el nombre (no el objeto)
+            horarioDTOComboBox.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((empty || item == null ? null : item.getNombre()));
+                }
+            });
+
+            //Para que muestre horario en el 'placeholder'
+            horarioDTOComboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO horarioDTO, boolean estaVacio) {
+                    super.updateItem(horarioDTO, estaVacio);
+                    setText((horarioDTO == null) ? "Horario" : horarioDTO.getNombre());
+                }
+            });
+
+            horarioDTOComboBox.getSelectionModel().clearSelection();
+            horarioDTOComboBox.setEditable(false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtils.mostrarError("Error", "No se pudieron cargar los horarios");
+        }
+
+    }
+
 
     @FXML
     public void botonGuardarEmpleado(ActionEvent event) {
@@ -176,6 +210,12 @@ public class ControlHorarioEmpleadorController {
         //Validación ComboBox
         if(departamentoDTOComboBox.getValue() == null || rolDTOComboBox.getValue() == null) {
             AlertUtils.mostrarAdvertencia("Validación", "Selecciona un departamento y un rol");
+            return;
+        }
+
+        //Validación ComboBox Horario
+        if(horarioDTOComboBox.getValue() == null) {
+            AlertUtils.mostrarAdvertencia("Validación", "Selecciona un horario");
             return;
         }
 
@@ -205,6 +245,10 @@ public class ControlHorarioEmpleadorController {
             altaRapidaEmpleadoDTO.setIdRol(rolDTOComboBox.getValue().getIdRol());
         }
 
+        if (horarioDTOComboBox.getValue() != null) {
+            altaRapidaEmpleadoDTO.setIdHorario(horarioDTOComboBox.getValue().getIdHorario());
+        }
+
        altaRapidaEmpleadoDTO.setIdEmpresa(2);
 
 
@@ -214,15 +258,11 @@ public class ControlHorarioEmpleadorController {
             if (resultado != null) {
                 resultado.setDepartamento(departamentoDTOComboBox.getValue().getNombre());
                 resultado.setRol(rolDTOComboBox.getValue().getNombre());
+                resultado.setHorario(horarioDTOComboBox.getValue().getNombre());
                 resultado.setFechaAlta(datePickerFechaAlta.getValue());
                 resultado.setEstado("ACTIVO");
                 resultado.setDni(txtDni.getText());
-              /*  resultado.setDepartamentoDTO(departamentoDTOComboBox.getValue());
-                resultado.setRolDTO(rolDTOComboBox.getValue());*/
 
-
-
-               // altaRapidaEmpleados.add(resultado);
                 SessionData.getInstance().getEmpleados().add(resultado);
                 AlertUtils.mostrarInfo("Éxito", "Empleado guardado correctamente.");
                 limpiarCampos();
@@ -243,6 +283,7 @@ public class ControlHorarioEmpleadorController {
         datePickerFechaNacimiento.setValue(null);
         departamentoDTOComboBox.getSelectionModel().clearSelection();
         rolDTOComboBox.getSelectionModel().clearSelection();
+        horarioDTOComboBox.getSelectionModel().clearSelection();
     }
 
     @FXML

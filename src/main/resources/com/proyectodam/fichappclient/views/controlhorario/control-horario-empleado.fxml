@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+
+<VBox alignment="TOP_CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml" fx:controller="com.proyectodam.fichappclient.controller.ControlHorario.ControlHorarioEmpleadoController" style="-fx-background-color: #2d3e6f; -fx-padding: 40;" maxWidth="Infinity" maxHeight="Infinity">
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <ImageView fx:id="imgPerfil" fitWidth="120" fitHeight="120" preserveRatio="true"/>
+        <Label fx:id="nombreLabel" style="-fx-text-fill: white; -fx-font-size:20px; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox spacing="40" alignment="CENTER">
+
+        <VBox alignment="CENTER">
+            <Label text="Tiempo trabajado" style="-fx-text-fill:#cccccc; -fx-font-size: 14px;"/>
+            <Label fx:id="contadorLabel" text="00:00:00" style="-fx-font-size: 28px; -fx-text-fill: white;"/>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <Label text="Horas Extra" style="-fx-text-fill:#cccccc; -fx-font-size: 14px;"/>
+            <Label fx:id="horasExtraLabel" text="0.00 h" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <Label text="Bolsa Horas" style="-fx-text-fill:#cccccc; -fx-font-size: 14px;"/>
+            <Label fx:id="bolsaHorasLabel" text="0.00 h" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+        </VBox>
+
+    </HBox>
+
+
+    <HBox alignment="CENTER" spacing="20">
+
+        <Button fx:id="btnEntrada" text="ENTRADA" onAction="#ficharEntrada" style="-fx-background-color:#4CAF50; -fx-text-fill: white; -fx-font-size:14px;"/>
+
+        <Button fx:id="btnDescanso" text="DESCANSO" onAction="#ficharDescanso" style="-fx-background-color:#ffb84d; -fx-text-fill: white; -fx-font-size:18px;"/>
+
+        <Button fx:id="btnSalida" text="SALIDA" onAction="#ficharSalida" style="-fx-background-color:#ff5c5c; -fx-text-fill: white; -fx-font-size:18px;"/>
+
+    </HBox>
+
+    <VBox spacing="5">
+        <Label text="Fichaje de hoy" style="-fx-text-fill:white; -fx-font-size: 16px; -fx-font-weight:bold;"/>
+
+        <TableView fx:id="tablaHoy" prefHeight="120">
+            <columns>
+                <TableColumn fx:id="colFechaHoy" text="Fecha"/>
+                <TableColumn fx:id="colEntradaHoy" text="Entrada"/>
+                <TableColumn fx:id="colDescansoHoy" text="Descanso"/>
+                <TableColumn fx:id="colSalidaHoy" text="Salida"/>
+                <TableColumn fx:id="colTipoHoy" text="Tipo evento"/>
+                <TableColumn fx:id="colServidorHoy" text="Servidor"/>
+                <TableColumn fx:id="colComentarioHoy" text="Comentario"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <VBox spacing="5">
+        <Label text="Histórico de Fichajes" style="-fx-text-fill:white; -fx-font-size: 16px; -fx-font-weight:bold;"/>
+
+        <TableView fx:id="tablaHistorico" prefHeight="300">
+
+            <columns>
+                <TableColumn fx:id="colFechaHist" text="Fecha"/>
+                <TableColumn fx:id="colTipoHist" text="Tipo evento"/>
+                <TableColumn fx:id="colMetodoHist" text="Método"/>
+                <TableColumn fx:id="colHoraHist" text="Servidor"/>
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+
+</VBox>
+
+
+

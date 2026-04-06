@@ -19,9 +19,20 @@ public class EmpleadoDTO {
     private LocalDate fechaNacimiento;
     private DepartamentoDTO departamentoDTO;
     private RolDTO rolDTO;
+    private HorarioDTO horarioDTO;
     private String departamento;
     private String rol;
+    private String horario;
 
+    private String imgPerfil;
+
+    public String getImgPerfil() {
+        return imgPerfil;
+    }
+
+    public void setImgPerfil(String imgPerfil) {
+        this.imgPerfil = imgPerfil;
+    }
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -133,5 +144,21 @@ public class EmpleadoDTO {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public HorarioDTO getHorarioDTO() {
+        return horarioDTO;
+    }
+
+    public void setHorarioDTO(HorarioDTO horarioDTO) {
+        this.horarioDTO = horarioDTO;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 }

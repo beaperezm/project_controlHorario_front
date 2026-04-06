@@ -35,8 +35,9 @@
                 <ComboBox fx:id="filtrarEstado" prefHeight="25.0" prefWidth="180.0" promptText="Estado" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <DatePicker fx:id="filtrarFechaAlta" prefHeight="25.0" prefWidth="180.0" promptText="Fecha de Alta" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                 <DatePicker fx:id="filtrarFechaNacimiento" prefHeight="25.0" prefWidth="180.0" promptText="Fecha de Nacimiento" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <ComboBox fx:id="filtrarHorario" prefHeight="25.0" prefWidth="180.0" promptText="Horario" GridPane.columnIndex="5" GridPane.rowIndex="1" />
 
-                <Button prefHeight="25.0" prefWidth="151.0" text="Limpiar" GridPane.columnIndex="5" GridPane.rowIndex="1" onAction="#botonLimpiar"/>
+                <Button prefHeight="25.0" prefWidth="151.0" text="Limpiar" GridPane.columnIndex="6" GridPane.rowIndex="1" onAction="#botonLimpiar"/>
                 <rowConstraints>
                     <RowConstraints />
                     <RowConstraints />
@@ -57,6 +58,7 @@
             <TableColumn fx:id="columnaParaTelefono" text="Teléfono" prefWidth="180"/>
             <TableColumn fx:id="columnaParaDepartamento" text="Departamento" prefWidth="190"/>
             <TableColumn fx:id="columnaParaRol" text="Rol" prefWidth="100"/>
+            <TableColumn fx:id="columnaParaHorario" text="Horario" prefWidth="100"/>
             <TableColumn fx:id="columnaParaDni" text="DNI" prefWidth="100"/>
             <TableColumn fx:id="columnaParaFechaAlta" text="Fecha Alta" prefWidth="220"/>
             <TableColumn fx:id="columnaParaFechaNacimiento" text="Fecha Nacimiento" prefWidth="220"/>

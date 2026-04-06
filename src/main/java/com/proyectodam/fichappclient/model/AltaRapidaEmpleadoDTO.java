@@ -1,7 +1,6 @@
 package com.proyectodam.fichappclient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
@@ -20,6 +19,15 @@ public class AltaRapidaEmpleadoDTO {
     private LocalDate fechaNacimiento;
     private int idEmpresa;
     private String estado;
+    private int idHorario;
+
+    public int getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
+    }
 
     public String getNombre() {
         return nombre;

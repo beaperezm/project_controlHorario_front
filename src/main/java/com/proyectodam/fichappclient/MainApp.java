@@ -11,11 +11,15 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com/proyectodam/fichappclient/views/estructura-principal.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApp.class.getResource("/com/proyectodam/fichappclient/views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("FichApp");
         stage.setScene(scene);
         stage.setMaximized(true);
+
+        com.proyectodam.fichappclient.service.ServicioNavegacion.getInstance().setPrimaryStage(stage);
         stage.show();
     }
 

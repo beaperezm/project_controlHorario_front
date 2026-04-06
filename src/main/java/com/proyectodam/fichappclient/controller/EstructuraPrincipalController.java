@@ -14,6 +14,7 @@ public class EstructuraPrincipalController {
     @FXML
     private StackPane centerStackPane;
 
+
     @FXML
     private ToggleButton btnControlHorario;
     @FXML

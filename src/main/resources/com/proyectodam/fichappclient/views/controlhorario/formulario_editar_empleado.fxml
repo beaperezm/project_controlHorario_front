@@ -34,21 +34,24 @@
     <Label fx:id="rolLabel" text="Rol: " GridPane.rowIndex="6" GridPane.columnIndex="0"/>
     <ComboBox fx:id="rolDTOComboBoxForm"  GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-    <Label fx:id="dniLabel" text="Dni: " GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-    <TextField fx:id="dniTextField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+    <Label fx:id="horarioLabel" text="Horario: " GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="horarioDTOComboBoxForm"  GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+    <Label fx:id="dniLabel" text="Dni: " GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+    <TextField fx:id="dniTextField" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
 
 
-    <Label fx:id="fechaAltaLabel" text="Fecha de Alta: " GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-    <DatePicker fx:id="fechaAltaDatePicker" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+    <Label fx:id="fechaAltaLabel" text="Fecha de Alta: " GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+    <DatePicker fx:id="fechaAltaDatePicker" GridPane.rowIndex="9" GridPane.columnIndex="1" />
 
-    <Label fx:id="fechaNacimientoLabel" text="Fecha de Nacimiento: " GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-    <DatePicker fx:id="fechaNacimientoDatePicker" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+    <Label fx:id="fechaNacimientoLabel" text="Fecha de Nacimiento: " GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+    <DatePicker fx:id="fechaNacimientoDatePicker" GridPane.rowIndex="10" GridPane.columnIndex="1" />
 
-    <Label fx:id="estadoLabel" text="Estado: " GridPane.rowIndex="10" GridPane.columnIndex="0"/>
-    <ComboBox fx:id="estadoComboBox" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+    <Label fx:id="estadoLabel" text="Estado: " GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+    <ComboBox fx:id="estadoComboBox" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
 
 
-    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="11" GridPane.columnIndex="1">
+    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.rowIndex="12" GridPane.columnIndex="1">
         <Button text="Guardar" fx:id="botonGuardar" onAction="#botonGuardarEmpleadoEditado"/>
         <Button text="Cancelar" fx:id="botonCancelar" onAction="#botonCancelarEmpleadoEditado"/>
     </HBox>

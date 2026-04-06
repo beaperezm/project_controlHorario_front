@@ -55,7 +55,7 @@ public class ApiClient {
     private String sendRequest(HttpRequest request) throws IOException, InterruptedException {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if(response.statusCode() >= 200 & response.statusCode() < 300) {
+        if(response.statusCode() >= 200 && response.statusCode() < 300) {
             return response.body();
         } else {
             throw new RuntimeException("Error en la API: Código " + response.statusCode() + " - " + response.body());

@@ -27,11 +27,12 @@
             <TextField fx:id="txtTelefono" promptText="Teléfono" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <ComboBox fx:id="departamentoDTOComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Departamento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="rolDTOComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Rol" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="txtDni" promptText="DNI_NIE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox fx:id="horarioDTOComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Horario" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-            <DatePicker fx:id="datePickerFechaAlta" promptText="Fecha Alta" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <DatePicker fx:id="datePickerFechaNacimiento" promptText="Fecha Nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="botonGuardar" onAction="#botonGuardarEmpleado" prefHeight="25.0" prefWidth="150.0" text="Guardar Empleado" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDni" promptText="DNI_NIE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerFechaAlta" promptText="Fecha Alta" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerFechaNacimiento" promptText="Fecha Nacimiento" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="botonGuardar" onAction="#botonGuardarEmpleado" prefHeight="25.0" prefWidth="150.0" text="Guardar Empleado" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -53,6 +54,7 @@
             <TableColumn fx:id="columnaParaTelefono" text="Teléfono" prefWidth="180"/>
             <TableColumn fx:id="columnaParaDepartamento" text="Departamento" prefWidth="190"/>
             <TableColumn fx:id="columnaParaRol" text="Rol" prefWidth="100"/>
+            <TableColumn fx:id="columnaParaHorario" text="Horario" prefWidth="190"/>
             <TableColumn fx:id="columnaParaDni" text="DNI" prefWidth="100"/>
             <TableColumn fx:id="columnaParaFechaAlta" text="Fecha Alta" prefWidth="220"/>
             <TableColumn fx:id="columnaParaFechaNacimiento" text="Fecha Nacimiento" prefWidth="220"/>

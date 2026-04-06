@@ -3,23 +3,30 @@ package com.proyectodam.fichappclient.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RolDTO {
+public class HorarioDTO {
 
-    private int idRol;
+    private int idHorario;
     private String nombre;
 
-    public int getIdRol() {
-        return idRol;
+    public HorarioDTO(int idHorario, String nombre) {
+        this.idHorario = idHorario;
+        this.nombre = nombre;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public HorarioDTO() {
+    }
+
+    public int getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
     }
 
     public String getNombre() {
         return nombre;
     }
-
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -29,5 +36,4 @@ public class RolDTO {
     public String toString() {
         return nombre;
     }
-
 }

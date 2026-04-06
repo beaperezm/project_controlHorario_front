@@ -8,6 +8,8 @@ public class SessionData {
 
     private static SessionData sessionData;
 
+    private EmpleadoDTO empleadoLogueado;
+
     private final ObservableList<EmpleadoDTO> empleados = FXCollections.observableArrayList();
 
     private SessionData() {}
@@ -19,11 +21,20 @@ public class SessionData {
         return sessionData;
     }
 
+    public EmpleadoDTO getEmpleadoLogueado() {
+        return empleadoLogueado;
+    }
+
+    public void setEmpleadoLogueado(EmpleadoDTO empleadoDTO) {
+        this.empleadoLogueado = empleadoDTO;
+    }
+
     public ObservableList<EmpleadoDTO> getEmpleados() {
         return empleados;
     }
 
     public void clearSession() {
         empleados.clear();
+        empleadoLogueado = null;
     }
 }

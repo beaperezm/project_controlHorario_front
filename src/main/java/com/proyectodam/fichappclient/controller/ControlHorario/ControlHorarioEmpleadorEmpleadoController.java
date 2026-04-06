@@ -34,11 +34,13 @@ public class ControlHorarioEmpleadorEmpleadoController {
     @FXML
     private ComboBox<RolDTO> filtrarRol;
     @FXML
+    private ComboBox<HorarioDTO> filtrarHorario;
+    @FXML
     private ComboBox<String> filtrarEstado;
     @FXML
     private TableView<EmpleadoDTO> tablaEmpleados;
     @FXML
-    private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
+    private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaHorario, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
     @FXML
     private DatePicker filtrarFechaAlta, filtrarFechaNacimiento;
     @FXML
@@ -61,8 +63,9 @@ public class ControlHorarioEmpleadorEmpleadoController {
         cargarDepartamentos();
         cargarRoles();
         cargarEstados();
+        cargarHorarios();
 
-        EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, listadoEmpleados ,columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta,columnaParaFechaNacimiento, columnaParaEstado);
+        EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, listadoEmpleados ,columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaHorario, columnaParaDni, columnaParaFechaAlta,columnaParaFechaNacimiento, columnaParaEstado);
 
         configurarFiltro();
         cargarEmpleados();
@@ -135,6 +138,38 @@ public class ControlHorarioEmpleadorEmpleadoController {
         }
     }
 
+    private void cargarHorarios()  {
+        try {
+            filtrarHorario.getItems().setAll(controlHorarioEmpleadorService.getAllHorarios());
+
+            //Para que muestre el nombre (no el objeto)
+            filtrarHorario.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((empty || item == null ? null : item.getNombre()));
+                }
+            });
+
+            //Para que muestre horario en el 'placeholder'
+            filtrarHorario.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO horarioDTO, boolean estaVacio) {
+                    super.updateItem(horarioDTO, estaVacio);
+                    setText((horarioDTO == null) ? "Horario" : horarioDTO.getNombre());
+                }
+            });
+
+            filtrarHorario.getSelectionModel().clearSelection();
+            filtrarHorario.setEditable(false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtils.mostrarError("Error", "No se pudieron cargar los horarios");
+        }
+
+    }
+
     private void cargarEmpleados() {
 
         new Thread(() -> {
@@ -194,6 +229,7 @@ public class ControlHorarioEmpleadorEmpleadoController {
         filtrarEstado.valueProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> aplicarFiltro());
         filtrarFechaAlta.valueProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> aplicarFiltro());
         filtrarFechaNacimiento.valueProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> aplicarFiltro());
+        filtrarHorario.valueProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> aplicarFiltro());
 
         SortedList<EmpleadoDTO> dataSorted = new SortedList<>(filtroEmpleados);
         dataSorted.comparatorProperty().bind(tablaEmpleados.comparatorProperty());
@@ -254,6 +290,12 @@ public class ControlHorarioEmpleadorEmpleadoController {
                 }
             }
 
+            if(filtrarHorario.getValue() != null) {
+                if(!Objects.equals(empleadoDTO.getHorario(), filtrarHorario.getValue().getNombre())) {
+                    return false;
+                }
+            }
+
             return true;
         });
     }
@@ -266,6 +308,7 @@ public class ControlHorarioEmpleadorEmpleadoController {
         filtrarEstado.getSelectionModel().clearSelection();
         filtrarDepartamento.getSelectionModel().clearSelection();
         filtrarRol.getSelectionModel().clearSelection();
+        filtrarHorario.getSelectionModel().clearSelection();
 
 
         cargarEmpleados();

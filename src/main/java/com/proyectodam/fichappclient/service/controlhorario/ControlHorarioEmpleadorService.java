@@ -22,7 +22,7 @@ public class ControlHorarioEmpleadorService {
     }
 
     public ControlHorarioEmpleadorService() {
-        this.apiClient = apiClient = new ApiClient();
+        this.apiClient = new ApiClient();
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -30,23 +30,29 @@ public class ControlHorarioEmpleadorService {
 
 
     public List<DepartamentoDTO> getAllDepartamentos() throws Exception{
-            String response = apiClient.get("/departamentos/all");
-            return objectMapper.readValue(response, new TypeReference<List<DepartamentoDTO>>() {});
-        }
+        String response = apiClient.get("/departamentos/all");
+        return objectMapper.readValue(response, new TypeReference<List<DepartamentoDTO>>() {});
+    }
 
-        public List<RolDTO> getAllRoles() throws Exception{
-            String response = apiClient.get("/roles/all");
-            return objectMapper.readValue(response, new TypeReference<List<RolDTO>>() {});
-        }
+    public List<RolDTO> getAllRoles() throws Exception{
+        String response = apiClient.get("/roles/all");
+        return objectMapper.readValue(response, new TypeReference<List<RolDTO>>() {});
+    }
 
-        public EmpleadoDTO altaRapidaEmpleado (AltaRapidaEmpleadoDTO altaRapidaEmpleadoDTO) throws Exception{
-            String requestBody = objectMapper.writeValueAsString(altaRapidaEmpleadoDTO);
-            String response = apiClient.post("/empleados/alta-rapida", requestBody);
-            return objectMapper.readValue(response, EmpleadoDTO.class);
+    public List<HorarioDTO> getAllHorarios() throws Exception{
+        String response = apiClient.get("/horarios/all");
+        return objectMapper.readValue(response, new TypeReference<List<HorarioDTO>>() {});
+    }
+
+
+    public EmpleadoDTO altaRapidaEmpleado (AltaRapidaEmpleadoDTO altaRapidaEmpleadoDTO) throws Exception{
+        String requestBody = objectMapper.writeValueAsString(altaRapidaEmpleadoDTO);
+        String response = apiClient.post("/empleados/alta-rapida", requestBody);
+        return objectMapper.readValue(response, EmpleadoDTO.class);
         }
 
         public void borrarEmpleado(int idEmpleado) throws Exception {
-        apiClient.delete("/empleados/empleado/" + idEmpleado);
+            apiClient.delete("/empleados/empleado/" + idEmpleado);
         }
 
         public EmpleadoDTO editarEmpleado(int idEmpleado, AltaRapidaEmpleadoDTO altaRapidaEmpleadoDTO) throws IOException, InterruptedException {
