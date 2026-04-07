@@ -1,0 +1,57 @@
+/* Estilos para el calendario oficial de Fich-App */
+
+.celda-vacia {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #eeeeee;
+    -fx-border-width: 1px;
+    -fx-background-radius: 4px;
+}
+
+.celda-dia {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px;
+    -fx-transition: all 0.2s;
+}
+
+.celda-dia:hover {
+    -fx-background-color: #e3f2fd;
+    -fx-border-color: #2196f3;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(33, 150, 243, 0.2), 5, 0, 0, 2);
+}
+
+.etiqueta-dia-semana {
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-fill: #555555;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+.etiqueta-dia-numero {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.etiqueta-dia-hoy {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #1976d2;
+    -fx-background-radius: 12px;
+    -fx-padding: 3px 8px;
+    -fx-font-size: 14px;
+}
+
+.etiqueta-recordatorio {
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+    -fx-background-color: #ff9800; /* Naranja/Ámbar vibrante */
+    -fx-background-radius: 4px;
+    -fx-padding: 2px 6px;
+    -fx-wrap-text: true;
+}

@@ -72,12 +72,12 @@ public class LoginController {
 
             if (role.equalsIgnoreCase("Administrador")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyectodam/fichappclient/views/estructura-principal.fxml"));
-                stage.setScene(new Scene(loader.load(), 320, 240));
+                stage.setScene(new Scene(loader.load(), 1024, 720));
                 stage.setMaximized(true);
                 stage.show();
             } else if (role.equalsIgnoreCase("Usuario")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/proyectodam/fichappclient/views/estructura-principal-empleado.fxml"));
-                stage.setScene(new Scene(loader.load(), 320, 240));
+                stage.setScene(new Scene(loader.load(), 1024, 720));
                 System.out.println("Cargando vista empleado");
             } else {
                 errorLabel.setText("Rol no conocido " + role);

@@ -56,7 +56,11 @@ public class ServicioNavegacion {
     public void navigateToMainLayout(String initialView) {
         try {
             FXMLLoader loader = new FXMLLoader(
+
                     getClass().getResource("/com/proyectodam/fichappclient/views/" + initialView + ".fxml"));
+
+                //    getClass().getResource("/com/proyectodam/fichappclient/views/estructura-principal.fxml"));
+
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -65,7 +69,8 @@ public class ServicioNavegacion {
             primaryStage.setScene(scene);
             primaryStage.show();
 
-      /*      // Obtenemos el controlador de la vista principal para configurar la vista inicial
+
+            // Obtenemos el controlador de la vista principal para configurar la vista inicial
             EstructuraPrincipalController controller = loader.getController();
 
             if (initialView != null && !initialView.isEmpty()) {
@@ -83,7 +88,7 @@ public class ServicioNavegacion {
                         controller.toggleDocuments();
                         break;
                 }
-            }*/
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

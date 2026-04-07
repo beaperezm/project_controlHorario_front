@@ -7,6 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Clase principal de la aplicación JavaFX.
+ * Inicializa la ventana principal (Stage) y carga la vista de inicio de sesión.
+ */
 public class MainApp extends Application {
 
     @Override
@@ -14,8 +18,11 @@ public class MainApp extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(
                 MainApp.class.getResource("/com/proyectodam/fichappclient/views/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 1024, 720);
+
         stage.setTitle("FichApp");
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
         stage.setScene(scene);
         stage.setMaximized(true);
 

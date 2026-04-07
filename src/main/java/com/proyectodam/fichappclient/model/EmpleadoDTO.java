@@ -15,6 +15,7 @@ public class EmpleadoDTO {
     private String telefono;
     private String dni;
     private String estado;
+
     private LocalDate fechaAlta;
     private LocalDate fechaNacimiento;
     private DepartamentoDTO departamentoDTO;
@@ -33,6 +34,13 @@ public class EmpleadoDTO {
     public void setImgPerfil(String imgPerfil) {
         this.imgPerfil = imgPerfil;
     }
+
+  /*  private String departamento;
+    private String rol;
+    private LocalDate fechaAlta;
+    private LocalDate fechaAltaSistema;
+    private LocalDate fechaNacimiento;*/
+
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -82,13 +90,13 @@ public class EmpleadoDTO {
         this.estado = estado;
     }
 
-    public LocalDate getFechaAlta() {
-        return fechaAlta;
+ /*   public LocalDate getFechaAltaSistema() {
+        return fechaAltaSistema;
     }
 
-    public void setFechaAlta(LocalDate fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
+    public void setFechaAltaSistema(LocalDate fechaAltaSistema) {
+        this.fechaAltaSistema = fechaAltaSistema;
+    }*/
 
     public String getDireccion() {
         return direccion;
@@ -112,22 +120,6 @@ public class EmpleadoDTO {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public DepartamentoDTO getDepartamentoDTO() {
-        return departamentoDTO;
-    }
-
-    public void setDepartamentoDTO(DepartamentoDTO departamentoDTO) {
-        this.departamentoDTO = departamentoDTO;
-    }
-
-    public RolDTO getRolDTO() {
-        return rolDTO;
-    }
-
-    public void setRolDTO(RolDTO rolDTO) {
-        this.rolDTO = rolDTO;
     }
 
     public String getDepartamento() {
@@ -161,4 +153,21 @@ public class EmpleadoDTO {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+   public LocalDate getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDate fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+  /*  @Override
+    public String toString() {
+        if (idEmpleado == -1)
+            return nombre != null ? nombre : "Todos";
+        String n = nombre != null ? nombre : "";
+        String a = apellidos != null ? apellidos : "";
+        return (n + " " + a).trim();
+        }*/
 }

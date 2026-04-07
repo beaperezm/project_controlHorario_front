@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.proyectodam.fichappclient.controller.VacacionesController"
-      alignment="CENTER"
-      spacing="20">
+<VBox xmlns="http://javafx.com/javafx/17"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.VacacionesController" spacing="12" style="-fx-padding: 16;">
 
-    <Label fx:id="tituloLabel"
-           text="Vacaciones"
-           style="-fx-font-size: 20px;"/>
+  <Label text="Módulo de Vacaciones" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+  <HBox spacing="10">
+    <Button text="Solicitar vacaciones" onAction="#onSolicitarClick"/>
+    <Button text="Refrescar" onAction="#onVerSolicitudesClick"/>
+  </HBox>
+
+  <Label fx:id="estadoLabel" />
+
+  <TableView fx:id="tablaSolicitudes" prefHeight="420.0">
+    <columns>
+      <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+      <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+      <TableColumn fx:id="colInicio" text="Inicio" prefWidth="120"/>
+      <TableColumn fx:id="colFin" text="Fin" prefWidth="120"/>
+      <TableColumn fx:id="colDias" text="Días" prefWidth="80"/>
+      <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+    </columns>
+  </TableView>
 
 </VBox>
-
