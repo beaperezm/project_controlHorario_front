@@ -27,12 +27,27 @@ public class EmpleadoDetalleController {
         rol.setText(empleadoDetalleDTO.getRol());
         vacacionesTotales.setText(valor(empleadoDetalleDTO.getDiasVacacionesTotales()));
         vacacionesPendientes.setText(valor(empleadoDetalleDTO.getDiasVacacionesPendientes()));
-        horasExtra.setText(valor(empleadoDetalleDTO.getHorasExtra()));
+        horasExtra.setText(valor(formatearHorasExtra(empleadoDetalleDTO.getHorasExtra())));
         horario.setText(valor(empleadoDetalleDTO.getHorario()));
         configuracionHorario.setText(valor(empleadoDetalleDTO.getConfiguracionHorario()));
     }
 
     private String valor(Object valor) {
         return valor == null ? "--" : valor.toString();
+    }
+
+    private String formatearHorasExtra(double horas) {
+        boolean negativo = horas < 0;
+        horas =  Math.abs(horas);
+
+        long segundos = Math.round(horas * 3600);
+
+        long hh = segundos /3600;
+        long mm = (segundos % 3600) / 60;
+        long ss = segundos % 60;
+
+        String tiempo = String.format("%02d:%02d:%02d", hh, mm, ss);
+
+        return negativo ? "-" + tiempo : tiempo;
     }
 }

@@ -60,4 +60,9 @@ public class ControlHorarioEmpleadoService {
         return objectMapper.readValue(response, HorasExtraDTO.class);
     }
 
+    public double obtenerBolsaHoras(int idEmpleado) throws IOException, InterruptedException {
+        String response = apiClient.get("/empleado/control-horario/bolsa-horas/" + idEmpleado);
+        return objectMapper.readValue(response, Double.class);
+    }
+
 }

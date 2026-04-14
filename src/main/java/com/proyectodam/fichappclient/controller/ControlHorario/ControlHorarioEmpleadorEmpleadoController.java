@@ -407,8 +407,4 @@ public class ControlHorarioEmpleadorEmpleadoController {
             }
         }).start();
     }
-
-
-
-
 }

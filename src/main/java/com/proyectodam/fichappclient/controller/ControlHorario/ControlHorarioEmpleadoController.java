@@ -80,12 +80,6 @@ public class ControlHorarioEmpleadoController {
         }
     }
 
-    private void estadoFuera() {
-        btnEntrada.setDisable(false);
-        btnDescanso.setDisable(true);
-        btnSalida.setDisable(true);
-    }
-
     private void estadoDentro() {
         btnEntrada.setDisable(true);
         btnDescanso.setDisable(false);
@@ -290,9 +284,13 @@ public class ControlHorarioEmpleadoController {
             try {
                 HorasExtraDTO horasExtraDTO = controlHorarioEmpleadoService.obtenerHorasExtra(empleadoDTO.getIdEmpleado());
 
+                double bolsaHoras = controlHorarioEmpleadoService.obtenerBolsaHoras(empleadoDTO.getIdEmpleado());
+
                 Platform.runLater(() -> {
-                    horasExtraLabel.setText(String.format("%.2f h", horasExtraDTO.getHorasExtra()));
-                    bolsaHorasLabel.setText(String.format("%.2f h", horasExtraDTO.getSaldoHoras()));
+
+                    horasExtraLabel.setText(formatearHorasExtra(horasExtraDTO.getHorasExtra()));
+
+                    bolsaHorasLabel.setText(formatearHorasExtra(bolsaHoras));
                 });
 
 
@@ -303,11 +301,29 @@ public class ControlHorarioEmpleadoController {
     }
 
     private void iniciarActualizacionHorasExtra() {
+
+        actualizarHorasExtra();
+
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(10), e -> actualizarHorasExtra())
         );
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+    }
+
+    private String formatearHorasExtra(double horas) {
+        boolean negativo = horas < 0;
+        horas =  Math.abs(horas);
+
+        long segundos = Math.round(horas * 3600);
+
+        long hh = segundos /3600;
+        long mm = (segundos % 3600) / 60;
+        long ss = segundos % 60;
+
+        String tiempo = String.format("%02d:%02d:%02d", hh, mm, ss);
+
+        return negativo ? "-" + tiempo : tiempo;
     }
 }

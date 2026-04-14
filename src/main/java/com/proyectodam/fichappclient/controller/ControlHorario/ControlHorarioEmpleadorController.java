@@ -39,7 +39,7 @@ public class ControlHorarioEmpleadorController {
     @FXML
     private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaHorario, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
 
-    private ObservableList<EmpleadoDTO> altaRapidaEmpleados = FXCollections.observableArrayList();
+    private final ObservableList<EmpleadoDTO> altaRapidaEmpleados = FXCollections.observableArrayList();
 
     private final ControlHorarioEmpleadorService controlHorarioEmpleadorService = new ControlHorarioEmpleadorService();
 
