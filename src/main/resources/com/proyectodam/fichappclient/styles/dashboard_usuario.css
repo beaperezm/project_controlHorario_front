@@ -1,0 +1,601 @@
+.dashboard-container {
+    -fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+    background-color: #f8f9fa;
+    -fx-padding: 40px;
+    padding: 40px;
+}
+
+/* Efecto Glassmorphism para las tarjetas (Tiles) */
+.glass-tile {
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+    background-color: #ffffff;
+    -fx-background-radius: 24px;
+    -fx-border-radius: 24px;
+    border-radius: 24px;
+    -fx-border-width: 1.5px;
+    border-width: 1.5px;
+    -fx-padding: 30px;
+    padding: 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
+    -fx-cursor: hand;
+    cursor: pointer;
+}
+
+.glass-tile:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 25, 0, 0, 15);
+    -fx-translate-y: -5px;
+}
+
+/* Colores de borde específicos para cada tarjeta */
+.tile-quiosco {
+    -fx-border-color: rgba(0, 150, 255, 0.4);
+    border-color: rgba(0, 150, 255, 0.4);
+}
+
+.tile-docs {
+    -fx-border-color: rgba(40, 167, 69, 0.4);
+    border-color: rgba(40, 167, 69, 0.4);
+}
+
+.tile-vacaciones {
+    -fx-border-color: rgba(255, 193, 7, 0.5);
+    border-color: rgba(255, 193, 7, 0.5);
+}
+
+.tile-config {
+    -fx-border-color: rgba(153, 50, 204, 0.4);
+    border-color: rgba(153, 50, 204, 0.4);
+}
+
+/* Iconos */
+.tile-icon {
+    -fx-scale-x: 2.5;
+    -fx-scale-y: 2.5;
+    -fx-fill: #495057;
+    fill: #495057;
+}
+
+/* Etiquetas */
+.tile-label {
+    -fx-font-size: 16px;
+    font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold", "System";
+    font-family: "Segoe UI Semibold", "System";
+    -fx-text-fill: #343a40;
+    color: #343a40;
+}
+
+/* Estilos del Reloj */
+.clock-container {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
+    -fx-background-radius: 12px;
+    -fx-padding: 8px 15px;
+    padding: 8px 15px;
+}
+
+.clock-text {
+    -fx-font-size: 18px;
+    font-size: 18px;
+    -fx-font-family: "Cascadia Code", "Monospaced", "System";
+    font-family: "Cascadia Code", "Monospaced", "System";
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.date-text {
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Texto de Cabecera */
+.dashboard-title {
+    -fx-font-size: 32px;
+    font-size: 32px;
+    -fx-font-family: "Segoe UI Semibold", "System";
+    font-family: "Segoe UI Semibold", "System";
+    -fx-text-fill: #2c3e50;
+}
+
+.dashboard-subtitle {
+    -fx-font-size: 16px;
+    font-size: 16px;
+    -fx-font-family: "System";
+    font-family: "System";
+    -fx-text-fill: #95a5a6;
+}
+
+/* Botón de Cerrar Sesión - Rediseñado con el toque diferenciador suave */
+.boton-logout {
+    -fx-background-color: -fx-accent-alt-light;
+    background-color: #EEF2FF;
+    -fx-text-fill: -fx-accent-alt;
+    color: #818CF8;
+    -fx-font-family: 'Segoe UI', 'System';
+    font-family: 'Segoe UI', 'System';
+    -fx-font-size: 15px; /* Un pelín más grande */
+    font-size: 15px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-padding: 16px 35px; /* Un pelín más grande */
+    padding: 16px 35px;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    border-radius: 30px;
+    -fx-border-color: -fx-accent-alt;
+    border-color: #818CF8;
+    -fx-border-width: 1.5px; /* Borde un poco más definido */
+    border-width: 1.5px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-alignment: CENTER;
+}
+
+.boton-logout:hover {
+    -fx-background-color: -fx-accent-alt;
+    background-color: #818CF8;
+    -fx-text-fill: white;
+    color: white;
+    -fx-translate-y: -2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(129, 140, 248, 0.4), 10, 0, 0, 5);
+}
+
+.boton-logout .svg-path {
+    -fx-fill: -fx-accent-alt;
+    fill: #818CF8;
+}
+
+.boton-logout:hover .svg-path {
+    -fx-fill: white;
+    fill: white;
+}
+
+/* Estilos de la Barra de Fichaje Rápido */
+.clocking-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-border-color: rgba(0, 150, 255, 0.2);
+    border-color: rgba(0, 150, 255, 0.2);
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 5);
+}
+
+.main-counter {
+    -fx-font-size: 36px;
+    font-size: 36px;
+    -fx-font-family: "Cascadia Code", "Monospaced", "System";
+    font-family: "Cascadia Code", "Monospaced", "System";
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.info-label {
+    -fx-font-size: 11px;
+    font-size: 11px;
+    -fx-font-family: "Segoe UI", "System";
+    font-family: "Segoe UI", "System";
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.small-info-label {
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-text-fill: #95a5a6;
+}
+
+.small-info-value {
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+/* Botones de Acción de Fichaje - Estilos base definidos en la sección del tema oscuro más abajo */
+
+/* Estilos del Botón de Volver */
+.btn-back {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
+    -fx-background-radius: 50%;
+    -fx-min-width: 45px;
+    min-width: 45px;
+    -fx-min-height: 45px;
+    min-height: 45px;
+    -fx-max-width: 45px;
+    max-width: 45px;
+    -fx-max-height: 45px;
+    max-height: 45px;
+    -fx-cursor: hand;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    font-size: 24px;
+    -fx-font-family: "Segoe UI Semibold", "System";
+    font-family: "Segoe UI Semibold", "System";
+    -fx-text-fill: #2c3e50;
+}
+
+/* --- TEMA OSCURO PARA LA VISTA DE FICHAJE --- */
+
+.clocking-container {
+    -fx-background-color: linear-gradient(to bottom right, #0a0f1e, #131b2e, #0f172a, #0a0f1e);
+    background-color: #0a0f1e;
+    -fx-padding: 30px 35px;
+    padding: 30px 35px;
+}
+
+/* Forzar que todas las etiquetas dentro del contenedor de fichaje sean blancas por defecto */
+.clocking-container .label {
+    -fx-text-fill: #ffffff !important;
+}
+
+.clocking-container .text-white-muted,
+.clocking-container .small-info-label,
+.clocking-container .info-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.7) !important;
+}
+
+.clocking-container .small-info-value {
+    -fx-text-fill: #ffffff !important;
+}
+
+
+.dark-glass-tile {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    border-radius: 20px;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 20, 0, 0, 10);
+}
+
+.dark-clocking-bar {
+    -fx-background-color: linear-gradient(to bottom right, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03));
+    background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 32px;
+    -fx-border-radius: 32px;
+    border-radius: 32px;
+    -fx-border-color: linear-gradient(to bottom right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08));
+    border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-padding: 40 50;
+    padding: 40px 50px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 35, 0, 0, 12);
+}
+
+/* Forzar color de Separator en modo oscuro */
+.dark-clocking-bar .separator *.line {
+    -fx-background-color: rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    -fx-border-style: none !important;
+    border-style: none !important;
+    -fx-pref-width: 2px;
+}
+
+.dark-clocking-bar .separator {
+    -fx-pref-width: 2px;
+    -fx-padding: 0 30;
+    padding: 0 30px;
+}
+
+.user-name-label {
+    -fx-font-size: 15px;
+    font-size: 15px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-font-family: "Segoe UI", "System";
+    font-family: "Segoe UI", "System";
+    -fx-text-fill: rgba(255, 255, 255, 0.85) !important;
+}
+
+.table-header-box {
+    -fx-padding: 5 0 12 5;
+    padding: 5px 0 12px 5px;
+    -fx-spacing: 8;
+}
+
+.table-title-label {
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-font-family: "Segoe UI Semibold", "System";
+    font-family: "Segoe UI Semibold", "System";
+    -fx-padding: 0 0 0 8;
+    padding: 0 0 0 8px;
+    -fx-letter-spacing: 1px;
+    letter-spacing: 1px;
+}
+
+/* Título encabezado de panel oscuro */
+.encabezado {
+    -fx-font-size: 13px !important;
+    font-size: 13px !important;
+    -fx-font-family: "Segoe UI Semibold", "System" !important;
+    font-family: "Segoe UI Semibold", "System" !important;
+    -fx-font-weight: bold !important;
+    font-weight: bold !important;
+    -fx-letter-spacing: 2.5px;
+    letter-spacing: 2.5px;
+    -fx-text-fill: rgba(255, 255, 255, 0.55) !important;
+}
+
+
+.text-white {
+    -fx-text-fill: #ffffff !important;
+}
+
+.text-white-muted {
+    -fx-text-fill: rgba(255, 255, 255, 0.75) !important;
+}
+
+.main-counter.text-white,
+.main-counter {
+    -fx-font-size: 90px !important;
+    font-size: 90px !important;
+    -fx-font-family: "Cascadia Code", "Consolas", "Monospaced", "System" !important;
+    font-family: "Cascadia Code", "Consolas", "Monospaced", "System" !important;
+    -fx-font-weight: bold !important;
+    font-weight: bold !important;
+    -fx-text-fill: #ffffff !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(100, 180, 255, 0.25), 20, 0, 0, 0);
+}
+
+
+.header-title.text-white {
+    -fx-font-size: 28px;
+    font-size: 28px;
+    -fx-font-family: "Segoe UI Bold", "System";
+    font-family: "Segoe UI Bold", "System";
+    -fx-text-fill: #ffffff !important;
+}
+
+.small-info-value.text-white,
+.small-info-value {
+    -fx-text-fill: #ffffff !important;
+    -fx-font-size: 34px !important;
+    font-size: 34px !important;
+    -fx-font-weight: bold !important;
+    font-weight: bold !important;
+    -fx-font-family: "Cascadia Code", "Consolas", "Monospaced", "System" !important;
+    font-family: "Cascadia Code", "Consolas", "Monospaced", "System" !important;
+}
+
+.small-info-label.text-white-muted,
+.small-info-label {
+    -fx-text-fill: rgba(255, 255, 255, 0.5) !important;
+    -fx-font-size: 13px !important;
+    font-size: 13px !important;
+    -fx-font-weight: bold !important;
+    font-weight: bold !important;
+    -fx-font-family: "Segoe UI Semibold", "System" !important;
+    font-family: "Segoe UI Semibold", "System" !important;
+}
+
+.info-label {
+    -fx-font-size: 13px !important;
+    font-size: 13px !important;
+    -fx-font-family: "Segoe UI Semibold", "System" !important;
+    font-family: "Segoe UI Semibold", "System" !important;
+    -fx-text-fill: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Estilo de TableView Oscuro */
+.clocking-container .table-view {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    padding: 0;
+}
+
+.clocking-container .table-view .column-header-background {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.clocking-container .table-view .column-header {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-size: 45px;
+    size: 45px;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 0 1 0 0;
+    border-width: 0 1 0 0;
+}
+
+.clocking-container .table-view .column-header .label {
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.clocking-container .table-view .table-row-cell {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-border-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.05);
+    -fx-border-width: 0 0 1 0;
+    border-width: 0 0 1px 0;
+}
+
+.clocking-container .table-view .table-row-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.clocking-container .table-view .table-row-cell:filled:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.clocking-container .table-view .table-cell {
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+    -fx-padding: 12px;
+    padding: 12px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-font-size: 13px;
+    font-size: 13px;
+}
+
+/* Elementos Interactivos */
+.btn-clocking {
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-font-family: "Segoe UI Semibold", "System";
+    font-family: "Segoe UI Semibold", "System";
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-letter-spacing: 1.5px;
+    letter-spacing: 1.5px;
+    -fx-padding: 16px 36px;
+    padding: 16px 36px;
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+    border-radius: 14px;
+    -fx-min-width: 170px;
+    min-width: 170px;
+    -fx-min-height: 48px;
+    min-height: 48px;
+    -fx-text-fill: white !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 5);
+}
+
+.btn-clocking:hover {
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
+    -fx-translate-y: -2px;
+}
+
+.btn-entrada {
+    -fx-background-color: linear-gradient(to bottom, #34d399, #059669) !important;
+    background-color: #059669 !important;
+}
+.btn-entrada:hover {
+    -fx-background-color: linear-gradient(to bottom, #4ade80, #10b981) !important;
+    background-color: #10b981 !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 211, 153, 0.4), 15, 0, 0, 5) !important;
+}
+
+.btn-descanso {
+    -fx-background-color: linear-gradient(to bottom, #a78bfa, #7c3aed) !important;
+    background-color: #7c3aed !important;
+}
+.btn-descanso:hover {
+    -fx-background-color: linear-gradient(to bottom, #c4b5fd, #8b5cf6) !important;
+    background-color: #8b5cf6 !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(167, 139, 250, 0.4), 15, 0, 0, 5) !important;
+}
+
+.btn-salida {
+    -fx-background-color: linear-gradient(to bottom, #f87171, #dc2626) !important;
+    background-color: #dc2626 !important;
+}
+.btn-salida:hover {
+    -fx-background-color: linear-gradient(to bottom, #fca5a5, #ef4444) !important;
+    background-color: #ef4444 !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(248, 113, 113, 0.4), 15, 0, 0, 5) !important;
+}
+
+.btn-clocking:disabled {
+    -fx-background-color: rgba(255, 255, 255, 0.06) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    -fx-opacity: 1.0;
+    opacity: 1.0;
+    -fx-text-fill: rgba(255, 255, 255, 0.2) !important;
+    -fx-cursor: default;
+    cursor: default;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-border-radius: 14px;
+    border-radius: 14px;
+    -fx-effect: none;
+}
+
+.dark-glass-tile:hover {
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.25);
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.btn-back-dark {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 14px;
+    -fx-min-width: 42px;
+    min-width: 42px;
+    -fx-min-height: 42px;
+    min-height: 42px;
+    -fx-max-width: 42px;
+    max-width: 42px;
+    -fx-max-height: 42px;
+    max-height: 42px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-radius: 14px;
+    border-radius: 14px;
+}
+
+.btn-back-dark:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    background-color: rgba(255, 255, 255, 0.18);
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.1), 10, 0, 0, 0);
+}
+
+/* Etiqueta CONTROL DE TIEMPO en header */
+.clocking-container .encabezado {
+    -fx-font-size: 22px !important;
+    font-size: 22px !important;
+    -fx-font-family: "Segoe UI Semibold", "System" !important;
+    font-family: "Segoe UI Semibold", "System" !important;
+    -fx-text-fill: rgba(255, 255, 255, 0.9) !important;
+    -fx-letter-spacing: 2px;
+    letter-spacing: 2px;
+}
+
+/* Etiqueta info-label TIEMPO TRABAJADO HOY */
+.clocking-container .info-label {
+    -fx-font-size: 11px !important;
+    font-size: 11px !important;
+    -fx-font-family: "Segoe UI Semibold", "System" !important;
+    font-family: "Segoe UI Semibold", "System" !important;
+    -fx-text-fill: rgba(255, 255, 255, 0.45) !important;
+}

@@ -1,6 +1,8 @@
 package com.proyectodam.fichappclient.controller;
 
 import com.proyectodam.fichappclient.enums.ModoConexion;
+import com.proyectodam.fichappclient.service.ServicioNavegacion;
+import javafx.event.ActionEvent;
 import com.proyectodam.fichappclient.util.ApiClient;
 import com.proyectodam.fichappclient.util.AppConfig;
 import javafx.fxml.FXML;
@@ -193,5 +195,10 @@ public class ControladorConfiguracion {
     private void cerrarVentana() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void handleBackToDashboard(ActionEvent event) {
+        ServicioNavegacion.getInstance().navigateToDashboardBase();
     }
 }

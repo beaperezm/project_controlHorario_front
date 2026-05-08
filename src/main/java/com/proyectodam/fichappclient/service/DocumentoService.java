@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.proyectodam.fichappclient.model.DocumentoDTO;
 import com.proyectodam.fichappclient.util.ApiClient;
 import com.proyectodam.fichappclient.util.AppConfig;
+import com.proyectodam.fichappclient.util.SessionManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -45,6 +46,37 @@ public class DocumentoService {
     }
 
     /**
+     * Obtiene los años ("tiempos") únicos disponibles.
+     */
+    public List<String> obtenerTiemposDisponibles(String categoria) throws Exception {
+        StringBuilder urlBuilder = new StringBuilder("/documentos/tiempo");
+        if (categoria != null && !categoria.isEmpty() && !categoria.equalsIgnoreCase("Todos")) {
+            urlBuilder.append("?categoria=").append(java.net.URLEncoder.encode(categoria, StandardCharsets.UTF_8));
+        }
+        String response = apiClient.get(urlBuilder.toString());
+        return objectMapper.readValue(response, new TypeReference<List<String>>() {});
+    }
+
+    /**
+     * Obtiene una página filtrada de documentos.
+     */
+    public com.proyectodam.fichappclient.model.PageResponseDTO<DocumentoDTO> obtenerPaginados(int page, int size, String categoria, Integer idEmpleado, String searchQuery, String year, String departamento) throws Exception {
+        StringBuilder urlBuilder = new StringBuilder("/documentos/paginas?page=").append(page).append("&size=").append(size);
+        
+        if (categoria != null && !categoria.isEmpty() && !categoria.equalsIgnoreCase("Todos")) {
+            urlBuilder.append("&categoria=").append(java.net.URLEncoder.encode(categoria, StandardCharsets.UTF_8));
+        }
+        
+        if (idEmpleado != null) urlBuilder.append("&idEmpleado=").append(idEmpleado);
+        if (searchQuery != null && !searchQuery.isEmpty()) urlBuilder.append("&searchQuery=").append(java.net.URLEncoder.encode(searchQuery, StandardCharsets.UTF_8));
+        if (year != null && !year.isEmpty() && !year.equalsIgnoreCase("Todos")) urlBuilder.append("&year=").append(java.net.URLEncoder.encode(year, StandardCharsets.UTF_8));
+        if (departamento != null && !departamento.isEmpty() && !departamento.equalsIgnoreCase("Todos")) urlBuilder.append("&departamento=").append(java.net.URLEncoder.encode(departamento, StandardCharsets.UTF_8));
+        
+        String response = apiClient.get(urlBuilder.toString());
+        return objectMapper.readValue(response, new TypeReference<com.proyectodam.fichappclient.model.PageResponseDTO<DocumentoDTO>>() {});
+    }
+
+    /**
      * Sube un documento usando multipart/form-data.
      */
     public DocumentoDTO subirDocumento(File archivo, String nombreCustom, String categoria, Integer idEmpleado)
@@ -55,12 +87,18 @@ public class DocumentoService {
         HttpRequest.BodyPublisher bodyPublisher = ofMimeMultipartData(archivo, nombreCustom, categoria,
                 String.valueOf(idEmpleado), boundary);
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .header("Content-Type", "multipart/form-data; boundary=" + boundary)
-                .POST(bodyPublisher)
-                .build();
+                .POST(bodyPublisher);
 
+        // Añadir token de autorización si existe
+        String token = SessionManager.getInstance().getAccessToken();
+        if (token != null && !token.isBlank()) {
+            requestBuilder.header("Authorization", "Bearer " + token);
+        }
+
+        HttpRequest request = requestBuilder.build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() >= 200 && response.statusCode() < 300) {
@@ -74,19 +112,7 @@ public class DocumentoService {
      * Descarga el archivo binario desde el servidor.
      */
     public byte[] descargarDocumento(Long idDocumento) throws Exception {
-        String url = getBaseUrl() + "/documentos/" + idDocumento + "/download";
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .GET()
-                .build();
-
-        HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
-
-        if (response.statusCode() >= 200 && response.statusCode() < 300) {
-            return response.body();
-        } else {
-            throw new RuntimeException("Error al descargar archivo: " + response.statusCode());
-        }
+        return apiClient.download("/documentos/" + idDocumento + "/download");
     }
 
     /**

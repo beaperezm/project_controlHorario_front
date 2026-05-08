@@ -67,4 +67,8 @@ public class AppConfig {
     public String getUrlPersonalizada() {
         return configuracionSistema.getUrlPersonalizada();
     }
+    
+    public ConfiguracionSistema getConfiguracionSistema() {
+        return configuracionSistema;
+    }
 }

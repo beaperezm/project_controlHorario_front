@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 
 import java.time.LocalDate;
 
+/** Configura las columnas y los datos de un TableView de empleados. */
 public class EmpleadoTablaUtil {
 
 
@@ -25,7 +26,14 @@ public class EmpleadoTablaUtil {
       //  columnaParaDepartamento.setCellValueFactory(altaRapida -> new SimpleStringProperty(altaRapida.getValue().getDepartamentoDTO() != null ? altaRapida.getValue().getDepartamentoDTO().getNombre() : "--"));
      //   columnaParaRol.setCellValueFactory(altaRapida -> new SimpleStringProperty(altaRapida.getValue().getRolDTO() != null ? altaRapida.getValue().getRolDTO().getNombre() : "--"));
         columnaParaDni.setCellValueFactory(altaRapida -> new SimpleStringProperty(seteoValorNull(altaRapida.getValue().getDni())));
-        columnaParaFechaAlta.setCellValueFactory(altaRapida -> { LocalDate fechaAlta = altaRapida.getValue().getFechaAlta(); return new SimpleStringProperty(seteoValorNull(String.valueOf(fechaAlta))); });
+        // fechaAlta puede ser nula si el empleado fue creado sólo con fechaAltaSistema
+        columnaParaFechaAlta.setCellValueFactory(altaRapida -> {
+            LocalDate fecha = altaRapida.getValue().getFechaAlta();
+            if (fecha == null) {
+                fecha = altaRapida.getValue().getFechaAltaSistema();
+            }
+            return new SimpleStringProperty(seteoValorNull(fecha != null ? String.valueOf(fecha) : null)); 
+        });
         columnaParaFechaNacimiento.setCellValueFactory(altaRapida -> { LocalDate fechaNacimiento = altaRapida.getValue().getFechaNacimiento(); return new SimpleStringProperty(seteoValorNull(String.valueOf(fechaNacimiento))); });
         columnaParaEstado.setCellValueFactory(altaRapida -> new SimpleStringProperty(seteoValorNull(altaRapida.getValue().getEstado())));
     }

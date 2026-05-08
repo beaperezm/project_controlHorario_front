@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox spacing="20.0" style="-fx-background-color: #f8f9fa;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ConfiguracionUsuarioController">
+   <padding>
+      <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+   </padding>
+   <children>
+      <!-- Cabecera -->
+      <HBox alignment="CENTER_LEFT" spacing="15.0">
+         <children>
+            <Button onAction="#handleBack" style="-fx-background-color: transparent; -fx-cursor: hand;">
+               <graphic>
+                  <SVGPath content="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="#2c3e50" scaleX="1.2" scaleY="1.2" />
+               </graphic>
+            </Button>
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Mi Perfil y Seguridad" />
+         </children>
+      </HBox>
+
+      <!-- Contenido Principal -->
+      <VBox spacing="25.0">
+         <children>
+            <!-- Card: Detalles de la Cuenta -->
+            <VBox spacing="20.0" styleClass="tarjeta" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Detalles de la Cuenta" />
+                  <GridPane hgap="40.0" vgap="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints minWidth="120" />
+                      <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                     <children>
+                        <Label text="Nombre:" GridPane.rowIndex="0" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblNombre" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                        
+                        <Label text="Apellidos:" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblApellidos" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                        
+                        <Label text="Email:" GridPane.rowIndex="2" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblEmail" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                        
+                        <Label text="DNI/NIE:" GridPane.rowIndex="3" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblDni" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                        
+                        <Label text="Departamento:" GridPane.rowIndex="4" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblDepartamento" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2c3e50;" />
+                        
+                        <Label text="Rol:" GridPane.rowIndex="5" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                        <Label fx:id="lblRol" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #3498db;" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <!-- Card: Cambio de Seguridad -->
+            <VBox spacing="15.0" style="-fx-background-color: #fff9e6; -fx-background-radius: 12; -fx-border-color: #ffe066; -fx-border-radius: 12; -fx-padding: 25;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e67e22;" text="Seguridad" />
+                  <Label text="Actualiza tu contraseña de acceso." style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+                  
+                  <VBox spacing="8.0" maxWidth="300">
+                     <children>
+                        <Label text="Nueva Contraseña:" style="-fx-font-weight: bold;" />
+                        <PasswordField fx:id="txtNewPassword" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="8.0" maxWidth="300">
+                     <children>
+                        <Label text="Confirmar Nueva Contraseña:" style="-fx-font-weight: bold;" />
+                        <PasswordField fx:id="txtConfirmPassword" />
+                     </children>
+                  </VBox>
+                  
+                  <Label fx:id="lblMensajeSeguridad" style="-fx-font-weight: bold; -fx-font-size: 13px;" visible="false" managed="false" />
+                  
+                  <Button fx:id="btnUpdatePassword" onAction="#handleUpdatePassword" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 8; -fx-cursor: hand;" text="Actualizar Contraseña" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

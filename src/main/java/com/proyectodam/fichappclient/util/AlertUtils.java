@@ -3,6 +3,10 @@ package com.proyectodam.fichappclient.util;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+/**
+ * Utilidad estática para mostrar diálogos de alerta JavaFX.
+ * Todos los diálogos se abren con alwaysOnTop para evitar que queden ocultos tras la ventana principal sin decoración.
+ */
 public class AlertUtils {
 
     public static void mostrarInfo(String titulo, String mensaje) {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.VacacionesEmpleadoController" spacing="12" style="-fx-padding: 16;">
+
+  <HBox alignment="CENTER_LEFT" spacing="10">
+    <children>
+      <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-cursor: hand;">
+        <graphic>
+          <javafx.scene.shape.SVGPath content="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="#2c3e50" scaleX="1.2" scaleY="1.2" />
+        </graphic>
+        <tooltip>
+          <Tooltip text="Volver al Panel Principal" />
+        </tooltip>
+      </Button>
+      <Label text="Mis Vacaciones y Ausencias" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    </children>
+  </HBox>
+
+  <HBox spacing="10">
+    <Button fx:id="btnSolicitar" text="Solicitar vacaciones" onAction="#onSolicitarClick" style="-fx-cursor: hand; -fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+    <Button text="Refrescar" onAction="#onVerSolicitudesClick" style="-fx-cursor: hand;"/>
+  </HBox>
+
+  <Label fx:id="estadoLabel" />
+
+  <TableView fx:id="tablaSolicitudes" prefHeight="420.0" VBox.vgrow="ALWAYS" style="-fx-fixed-cell-size: 45; -fx-font-size: 13px;">
+    <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+    </columnResizePolicy>
+    <columns>
+      <TableColumn fx:id="colId" text="ID" prefWidth="60" style="-fx-alignment: CENTER;"/>
+      <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120" style="-fx-alignment: CENTER;"/>
+      <TableColumn fx:id="colInicio" text="Inicio" prefWidth="120" style="-fx-alignment: CENTER;"/>
+      <TableColumn fx:id="colFin" text="Fin" prefWidth="120" style="-fx-alignment: CENTER;"/>
+      <TableColumn fx:id="colDias" text="Días Hábiles" prefWidth="120" style="-fx-alignment: CENTER; -fx-font-weight: bold;"/>
+      <TableColumn fx:id="colEstado" text="Estado" prefWidth="120" style="-fx-alignment: CENTER;"/>
+    </columns>
+  </TableView>
+
+</VBox>

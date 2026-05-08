@@ -22,8 +22,8 @@ public class ControlHorarioEmpleadorService {
     }
 
     public ControlHorarioEmpleadorService() {
-        this.apiClient = apiClient = new ApiClient();
-        objectMapper = new ObjectMapper();
+        this.apiClient = new ApiClient();
+        this.objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }

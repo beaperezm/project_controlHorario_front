@@ -3,10 +3,10 @@ package com.proyectodam.fichappclient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import com.proyectodam.fichappclient.util.AppConfig;
 
 /**
  * Clase principal de la aplicación JavaFX.
@@ -16,22 +16,39 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) ->
+            javafx.application.Platform.runLater(() ->
+                com.proyectodam.fichappclient.util.AlertUtils.mostrarError(
+                    "Error inesperado",
+                    "Hilo: " + thread.getName() + "\n" + throwable.getMessage())
+            )
+        );
+
         FXMLLoader fxmlLoader = new FXMLLoader(
                 MainApp.class.getResource("/com/proyectodam/fichappclient/views/login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1024, 720);
-        stage.setTitle("FichApp");
-        stage.setMinWidth(900);
-        stage.setMinHeight(600);
+        // Cargamos la vista de login sin dimensiones fijas para que se ajuste al contenido
+        Scene scene = new Scene(fxmlLoader.load());
+        
+        // Estilo sin bordes de ventana estándar
+        stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+        
+        // Añadir icono a la aplicación
+        try {
+            stage.getIcons().add(new Image(MainApp.class.getResourceAsStream("/com/proyectodam/fichappclient/img/favicon.png")));
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar el icono: " + e.getMessage());
+        }
+        
+        stage.setTitle("Fich-App");
         stage.setScene(scene);
-        stage.setMaximized(true);
 
-        // Inicializar el servicio de navegación
+        // El arrastre de la ventana ahora se gestiona directamente desde la barra superior (titleBar) en ControladorLogin.
+
+        com.proyectodam.fichappclient.util.WindowResizeHelper.addResizeListener(stage);
+
         com.proyectodam.fichappclient.service.ServicioNavegacion.getInstance().setPrimaryStage(stage);
 
-        // Mostrar en consola el modo de conexión y la URL base calculada
-        System.out.println("Modo: " + AppConfig.getInstance().getModoActual()
-            + " | baseUrl: " + AppConfig.getInstance().getBaseUrl());
-
+        stage.centerOnScreen();
         stage.show();
     }
 

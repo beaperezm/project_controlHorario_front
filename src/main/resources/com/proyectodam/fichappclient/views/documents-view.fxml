@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox spacing="20.0" style="-fx-background-color: -fx-background;" stylesheets="@../styles/main.css"
+<VBox alignment="TOP_LEFT" spacing="20.0" style="-fx-background-color: -fx-background;" stylesheets="@../styles/main.css"
     xmlns="http://javafx.com/javafx/17"
     xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorDocumentos">
 
@@ -24,7 +24,14 @@
     </padding>
 
     <!-- Header -->
-    <Label styleClass="encabezado" text="Gestión de Documentos" />
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox.margin>
+            <Insets bottom="5.0" />
+        </VBox.margin>
+        <children>
+            <Label text="Gestión de Documentos" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #5D4037;" />
+        </children>
+    </HBox>
 
     <!-- Sección de Filtros -->
     <VBox spacing="10.0" styleClass="tarjeta">
@@ -36,7 +43,8 @@
                     <TextField fx:id="searchEmpleadoField" promptText="Buscar por nombre de empleado" prefWidth="250.0" />
                     <TextField fx:id="searchField" promptText="Buscar por archivo" prefWidth="250.0" />
                     <ComboBox fx:id="typeCombo" promptText="Tipo Documento" prefWidth="200.0" />
-                    <ComboBox fx:id="groupCombo" promptText="Departamento" prefWidth="200.0" />
+                    <ComboBox fx:id="groupCombo" promptText="Departamento" prefWidth="180.0" />
+                    <ComboBox fx:id="yearComboBox" promptText="Tiempo" prefWidth="120.0" />
                 </children>
             </HBox>
 

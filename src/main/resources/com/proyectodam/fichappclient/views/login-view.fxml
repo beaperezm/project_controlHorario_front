@@ -6,47 +6,50 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: -fx-background;" stylesheets="@../styles/main.css"
-    xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorLogin">
+<VBox alignment="CENTER" fillWidth="false" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorLogin" style="-fx-background-color: transparent;" stylesheets="@../styles/main.css">
     <children>
+        <!-- Barra superior para arrastrar la ventana y botón de cierre discreto -->
+        <HBox fx:id="titleBar" alignment="CENTER" prefWidth="400.0" prefHeight="35.0" style="-fx-background-color: rgba(0, 0, 0, 0.01); -fx-cursor: move;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleCloseWindow" style="-fx-background-color: transparent; -fx-text-fill: -fx-text-muted; -fx-cursor: hand;" text="✕">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
         <VBox alignment="CENTER_LEFT" prefWidth="400.0" spacing="20.0" styleClass="tarjeta">
             <children>
                 <VBox alignment="CENTER" spacing="5.0">
                     <children>
-                        <Label styleClass="encabezado" text="Fich-App">
-                            <font>
-                                <Font name="System Bold" size="28.0" />
-                            </font>
-                        </Label>
-                        <Label styleClass="label, tenue" text="Control Horario y Gestión" />
+                        <javafx.scene.image.ImageView fitHeight="120.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <javafx.scene.image.Image url="@../img/logo_fichapp.png" />
+                            </image>
+                        </javafx.scene.image.ImageView>
                     </children>
                     <VBox.margin>
                         <Insets bottom="20.0" />
                     </VBox.margin>
                 </VBox>
-                <VBox spacing="5.0">
-                    <children>
-                        <Label styleClass="label" text="Entorno" />
-                        <ComboBox fx:id="environmentSelector" maxWidth="1.7976931348623157E308" />
-                    </children>
-                </VBox>
+
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="label" text="Usuario" />
-                        <TextField fx:id="usernameField" promptText="ej. empleado@empresa.com" />
+                        <TextField fx:id="usernameField" onAction="#handleLogin" promptText="ej. empleado@empresa.com" />
                     </children>
                 </VBox>
                 <VBox spacing="5.0">
                     <children>
                         <Label styleClass="label" text="Contraseña" />
-                        <PasswordField fx:id="passwordField" promptText="••••••••" />
+                        <PasswordField fx:id="passwordField" onAction="#handleLogin" promptText="••••••••" />
                     </children>
                 </VBox>
-                <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="button" text="Iniciar Sesión">
+                <Button fx:id="loginButton" defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="button" text="Iniciar Sesión">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
@@ -55,6 +58,13 @@
                     </font>
                 </Button>
                 <Label fx:id="errorLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" textFill="#d32f2f" visible="false" />
+                <Button fx:id="activarCuentaButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleActivarCuenta"
+                        style="-fx-background-color: transparent; -fx-text-fill: #1976D2; -fx-cursor: hand; -fx-underline: true;"
+                        text="¿Primera vez? Activar mi cuenta">
+                    <VBox.margin>
+                        <Insets top="5.0" />
+                    </VBox.margin>
+                </Button>
             </children>
             <padding>
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />

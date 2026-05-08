@@ -1,17 +1,19 @@
 package com.proyectodam.fichappclient.util.controlhorario;
 
-import com.proyectodam.fichappclient.controller.ControlHorario.ControlHorarioEmpleadorEmpleadoController;
 import com.proyectodam.fichappclient.model.EmpleadoDTO;
 import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorEmpleadoService;
 import com.proyectodam.fichappclient.service.controlhorario.ControlHorarioEmpleadorService;
 import com.proyectodam.fichappclient.util.AlertUtils;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
+/**
+ * Gestiona las operaciones de borrado de empleados.
+ * Distingue entre borrado físico (elimina el registro de la BD) y borrado lógico (cambia el estado a INACTIVO).
+ */
 public class EmpleadoBorradoUtil {
 
     private final ControlHorarioEmpleadorService controlHorarioEmpleadorService;

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" styleClass="content-pane" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.InformesController">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+    <children>
+        <VBox spacing="5.0">
+            <children>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Generación de Informes" />
+                <Label style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;" text="Configure los parámetros para exportar el registro de jornada o resumen mensual." />
+            </children>
+        </VBox>
+
+        <Separator />
+
+        <GridPane hgap="30.0" vgap="20.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="150" prefWidth="200" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <children>
+                <Label style="-fx-font-weight: bold;" text="Tipo de Informe:" GridPane.rowIndex="0" />
+                <ComboBox fx:id="cbTipoInforme" maxWidth="1.7976931348623157E308" prefHeight="40.0" promptText="Seleccione el tipo de reporte" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label style="-fx-font-weight: bold;" text="Fecha Inicio:" GridPane.rowIndex="1" />
+                <DatePicker fx:id="dpInicio" maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label style="-fx-font-weight: bold;" text="Fecha Fin:" GridPane.rowIndex="2" />
+                <DatePicker fx:id="dpFin" maxWidth="1.7976931348623157E308" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label fx:id="lblBuscar" style="-fx-font-weight: bold;" text="Buscador de Empleado:" GridPane.rowIndex="3" />
+                <TextField fx:id="txtBuscarEmpleado" promptText="Buscar por nombre, apellidos o DNI..." prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label fx:id="lblEmpleado" style="-fx-font-weight: bold;" text="Seleccionar de la Lista:" GridPane.rowIndex="4" />
+                <ComboBox fx:id="cbEmpleado" maxWidth="1.7976931348623157E308" prefHeight="40.0" promptText="Elija un empleado..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            </children>
+        </GridPane>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button onAction="#handleLimpiar" styleClass="boton-secundario" text="Limpiar Filtros" />
+                <Button onAction="#handleGenerarPDF" styleClass="boton-primario" text="Generar PDF" />
+                <Button onAction="#handleExportarExcel" styleClass="boton-primario" text="Exportar Excel" style="-fx-background-color: #2e7d32;" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

@@ -30,16 +30,13 @@ public class EmpleadoFormularioEditarController {
     private DatePicker fechaAltaDatePicker, fechaNacimientoDatePicker;
 
     private EmpleadoDTO empleadoDTO;
-    private DepartamentoDTO departamentoDTO;
     private ControlHorarioEmpleadorEmpleadoService controlHorarioEmpleadorEmpleadoService;
-    private ControlHorarioEmpleadorService controlHorarioEmpleadorService;
     private Stage stage;
     private TableView<EmpleadoDTO> tablaEmpleados;
 
     public void initData(EmpleadoDTO empleadoDTO, ControlHorarioEmpleadorEmpleadoService controlHorarioEmpleadorEmpleadoService, ControlHorarioEmpleadorService controlHorarioEmpleadorService,  ObservableList<String> estadoEmpleado, Stage stage, TableView<EmpleadoDTO> tablaEmpleados) {
         this.empleadoDTO = empleadoDTO;
         this.controlHorarioEmpleadorEmpleadoService = controlHorarioEmpleadorEmpleadoService;
-        this.controlHorarioEmpleadorService = controlHorarioEmpleadorService;
         this.stage = stage;
         this.tablaEmpleados = tablaEmpleados;
 
@@ -50,7 +47,7 @@ public class EmpleadoFormularioEditarController {
             rolDTOComboBoxForm.getItems().setAll(controlHorarioEmpleadorService.getAllRoles());
         } catch (Exception e) {
             AlertUtils.mostrarError("Error", "No se han podido cargar los departamentos y/o roles");
-            throw new RuntimeException(e);
+            return;
         }
 
 
@@ -100,7 +97,6 @@ public class EmpleadoFormularioEditarController {
         new Thread(() -> {
             try {
                 controlHorarioEmpleadorEmpleadoService.editarEmpleado(empleadoDTO.getIdEmpleado(), altaRapidaEmpleadoDTO);
-                controlHorarioEmpleadorService.editarEmpleado(empleadoDTO.getIdEmpleado(), altaRapidaEmpleadoDTO);
                 Platform.runLater(() -> {
                     DepartamentoDTO departamentoDTOSeleccionado = departamentoDTOComboBoxForm.getValue();
                     RolDTO rolDTOSeleccionado = rolDTOComboBoxForm.getValue();

@@ -1,73 +1,36 @@
 package com.proyectodam.fichappclient.model;
 
-import javafx.beans.property.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 
+/** DTO simplificado de una solicitud de vacaciones/ausencia, usado en la vista del empleado. */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SolicitudVacacionesDTO {
 
-    private final IntegerProperty id = new SimpleIntegerProperty();
-    private final StringProperty tipo = new SimpleStringProperty();
-    private final ObjectProperty<LocalDate> inicio = new SimpleObjectProperty<>();
-    private final ObjectProperty<LocalDate> fin = new SimpleObjectProperty<>();
-    private final IntegerProperty dias = new SimpleIntegerProperty();
-    private final StringProperty estado = new SimpleStringProperty();
+    private Integer id;
+    private String tipo;
+    private LocalDate inicio;
+    private LocalDate fin;
+    private Integer dias;
+    private String estado;
 
-    public SolicitudVacacionesDTO(int id, String tipo, LocalDate inicio, LocalDate fin, int dias, String estado) {
-        this.id.set(id);
-        this.tipo.set(tipo);
-        this.inicio.set(inicio);
-        this.fin.set(fin);
-        this.dias.set(dias);
-        this.estado.set(estado);
-    }
+    public SolicitudVacacionesDTO() {}
 
-    // Getters (para TableView / PropertyValueFactory)
-    public int getId() {
-        return id.get();
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public String getTipo() {
-        return tipo.get();
-    }
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
-    public LocalDate getInicio() {
-        return inicio.get();
-    }
+    public LocalDate getInicio() { return inicio; }
+    public void setInicio(LocalDate inicio) { this.inicio = inicio; }
 
-    public LocalDate getFin() {
-        return fin.get();
-    }
+    public LocalDate getFin() { return fin; }
+    public void setFin(LocalDate fin) { this.fin = fin; }
 
-    public int getDias() {
-        return dias.get();
-    }
+    public Integer getDias() { return dias; }
+    public void setDias(Integer dias) { this.dias = dias; }
 
-    public String getEstado() {
-        return estado.get();
-    }
-
-    // Propiedades 
-    public IntegerProperty idProperty() {
-        return id;
-    }
-
-    public StringProperty tipoProperty() {
-        return tipo;
-    }
-
-    public ObjectProperty<LocalDate> inicioProperty() {
-        return inicio;
-    }
-
-    public ObjectProperty<LocalDate> finProperty() {
-        return fin;
-    }
-
-    public IntegerProperty diasProperty() {
-        return dias;
-    }
-
-    public StringProperty estadoProperty() {
-        return estado;
-    }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

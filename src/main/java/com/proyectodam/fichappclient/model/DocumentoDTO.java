@@ -9,136 +9,68 @@ public class DocumentoDTO {
 
     private Long id;
     private String nombreArchivo;
-    private String rutaAcceso;
     private String tipoMime;
     private long tamanoBytes;
     private String categoria;
     private EstadoFirma estadoFirma;
     private LocalDateTime fechaSubida;
-    private LocalDateTime fechaFirma;
     private String urlDescarga;
     private Integer idEmpleado;
     private String nombreEmpleado;
     private String departamento;
+    private Integer anio;
+    private Integer mes;
+    private String etiquetas;
 
-    // Auxiliares de UI (propiedades transitorias, no provienen de la API)
+    // UI-only — not from the API
     private transient boolean selected;
 
     public DocumentoDTO() {
         this.selected = false;
     }
 
-    // Getters y Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getNombreArchivo() { return nombreArchivo; }
+    public void setNombreArchivo(String nombreArchivo) { this.nombreArchivo = nombreArchivo; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getTipoMime() { return tipoMime; }
+    public void setTipoMime(String tipoMime) { this.tipoMime = tipoMime; }
 
-    public String getNombreArchivo() {
-        return nombreArchivo;
-    }
+    public long getTamanoBytes() { return tamanoBytes; }
+    public void setTamanoBytes(long tamanoBytes) { this.tamanoBytes = tamanoBytes; }
 
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
-    }
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 
-    public String getRutaAcceso() {
-        return rutaAcceso;
-    }
+    public EstadoFirma getEstadoFirma() { return estadoFirma; }
+    public void setEstadoFirma(EstadoFirma estadoFirma) { this.estadoFirma = estadoFirma; }
 
-    public void setRutaAcceso(String rutaAcceso) {
-        this.rutaAcceso = rutaAcceso;
-    }
+    public LocalDateTime getFechaSubida() { return fechaSubida; }
+    public void setFechaSubida(LocalDateTime fechaSubida) { this.fechaSubida = fechaSubida; }
 
-    public String getTipoMime() {
-        return tipoMime;
-    }
+    public String getUrlDescarga() { return urlDescarga; }
+    public void setUrlDescarga(String urlDescarga) { this.urlDescarga = urlDescarga; }
 
-    public void setTipoMime(String tipoMime) {
-        this.tipoMime = tipoMime;
-    }
+    public Integer getIdEmpleado() { return idEmpleado; }
+    public void setIdEmpleado(Integer idEmpleado) { this.idEmpleado = idEmpleado; }
 
-    public long getTamanoBytes() {
-        return tamanoBytes;
-    }
+    public String getNombreEmpleado() { return nombreEmpleado; }
+    public void setNombreEmpleado(String nombreEmpleado) { this.nombreEmpleado = nombreEmpleado; }
 
-    public void setTamanoBytes(long tamanoBytes) {
-        this.tamanoBytes = tamanoBytes;
-    }
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
 
-    public String getCategoria() {
-        return categoria;
-    }
+    public Integer getAnio() { return anio; }
+    public void setAnio(Integer anio) { this.anio = anio; }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+    public Integer getMes() { return mes; }
+    public void setMes(Integer mes) { this.mes = mes; }
 
-    public EstadoFirma getEstadoFirma() {
-        return estadoFirma;
-    }
+    public String getEtiquetas() { return etiquetas; }
+    public void setEtiquetas(String etiquetas) { this.etiquetas = etiquetas; }
 
-    public void setEstadoFirma(EstadoFirma estadoFirma) {
-        this.estadoFirma = estadoFirma;
-    }
-
-    public LocalDateTime getFechaSubida() {
-        return fechaSubida;
-    }
-
-    public void setFechaSubida(LocalDateTime fechaSubida) {
-        this.fechaSubida = fechaSubida;
-    }
-
-    public LocalDateTime getFechaFirma() {
-        return fechaFirma;
-    }
-
-    public void setFechaFirma(LocalDateTime fechaFirma) {
-        this.fechaFirma = fechaFirma;
-    }
-
-    public String getUrlDescarga() {
-        return urlDescarga;
-    }
-
-    public void setUrlDescarga(String urlDescarga) {
-        this.urlDescarga = urlDescarga;
-    }
-
-    public Integer getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(Integer idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public String getNombreEmpleado() {
-        return nombreEmpleado;
-    }
-
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
+    public boolean isSelected() { return selected; }
+    public void setSelected(boolean selected) { this.selected = selected; }
 }

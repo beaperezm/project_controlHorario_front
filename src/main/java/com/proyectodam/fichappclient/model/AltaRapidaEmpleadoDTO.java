@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 
+/** DTO para el formulario de alta rápida de empleado; se envía al endpoint POST /empleados. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AltaRapidaEmpleadoDTO {
 
@@ -19,6 +20,8 @@ public class AltaRapidaEmpleadoDTO {
     private LocalDate fechaNacimiento;
     private int idEmpresa;
     private String estado;
+    private int idTipoContrato;
+    private int idHorario;
 
     public String getNombre() {
         return nombre;
@@ -114,5 +117,21 @@ public class AltaRapidaEmpleadoDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getIdTipoContrato() {
+        return idTipoContrato;
+    }
+
+    public void setIdTipoContrato(int idTipoContrato) {
+        this.idTipoContrato = idTipoContrato;
+    }
+
+    public int getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
     }
 }

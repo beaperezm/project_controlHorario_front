@@ -8,7 +8,6 @@ import com.proyectodam.fichappclient.util.controlhorario.EmpleadoBorradoUtil;
 import com.proyectodam.fichappclient.util.controlhorario.EmpleadoTablaUtil;
 import com.proyectodam.fichappclient.util.SessionData;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,10 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class ControlHorarioEmpleadorController {
 
@@ -31,15 +33,20 @@ public class ControlHorarioEmpleadorController {
     @FXML
     private ComboBox<RolDTO> rolDTOComboBox;
     @FXML
+    private ComboBox<com.proyectodam.fichappclient.dto.TipoContratoConfigDTO> tipoContratoComboBox;
+    @FXML
+    private ComboBox<HorarioDTO> horarioComboBox;
+    @FXML
     private Button botonGuardar, botonEliminar, botonEditar;
     @FXML
     private TableView<EmpleadoDTO> tablaEmpleados;
     @FXML
     private TableColumn<EmpleadoDTO, String> columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado;
 
-    private ObservableList<EmpleadoDTO> altaRapidaEmpleados = FXCollections.observableArrayList();
 
     private final ControlHorarioEmpleadorService controlHorarioEmpleadorService = new ControlHorarioEmpleadorService();
+    private final com.proyectodam.fichappclient.service.TipoContratoConfigService tipoContratoService = new com.proyectodam.fichappclient.service.TipoContratoConfigService();
+    private final com.proyectodam.fichappclient.service.HorarioService horarioService = new com.proyectodam.fichappclient.service.HorarioService();
 
     private EmpleadoBorradoUtil empleadoBorradoUtil;
 
@@ -51,6 +58,9 @@ public class ControlHorarioEmpleadorController {
 
         cargarDepartamentos();
         cargarRoles();
+        cargarTiposContrato();
+        cargarHorarios();
+
         UnaryOperator<TextFormatter.Change> filtro = change -> {
             String nuevoTexto = change.getControlNewText();
 
@@ -91,12 +101,34 @@ public class ControlHorarioEmpleadorController {
             try {
                 formularioEditarEmpleado(empleadoDTO);
             } catch (Exception ex) {
-                throw new RuntimeException(ex);
+                AlertUtils.mostrarError("Error", "No se pudo abrir el formulario de edición: " + ex.getMessage());
             }
         });
 
+        cargarEmpleadosRecientes();
         EmpleadoTablaUtil.tablaEmpleado(tablaEmpleados, SessionData.getInstance().getEmpleados(), columnaParaNombre, columnaParaApellido, columnaParaCorreo, columnaParaDireccion, columnaParaTelefono, columnaParaDepartamento, columnaParaRol, columnaParaDni, columnaParaFechaAlta, columnaParaFechaNacimiento, columnaParaEstado);
 
+    }
+
+    private void cargarEmpleadosRecientes() {
+        try {
+            List<EmpleadoDTO> todos = controlHorarioEmpleadorService.getAllEmpleados();
+            LocalDate hoy = LocalDate.now();
+
+            List<EmpleadoDTO> filtrados = todos.stream()
+                    .filter(e -> e.getIdEmpleado() != -1) // Evitar el dummy
+                    .filter(e -> {
+                        // Filtramos si la fecha de alta contractual O la de sistema es hoy
+                        boolean esHoyAlta = e.getFechaAlta() != null && e.getFechaAlta().equals(hoy);
+                        boolean esHoySistema = e.getFechaAltaSistema() != null && e.getFechaAltaSistema().equals(hoy);
+                        return esHoyAlta || esHoySistema;
+                    })
+                    .collect(Collectors.toList());
+
+            SessionData.getInstance().getEmpleados().setAll(filtrados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void cargarDepartamentos()  {
@@ -165,6 +197,54 @@ public class ControlHorarioEmpleadorController {
 
     }
 
+    private void cargarTiposContrato() {
+        try {
+            tipoContratoComboBox.getItems().setAll(tipoContratoService.listarTodos());
+            tipoContratoComboBox.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(com.proyectodam.fichappclient.dto.TipoContratoConfigDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((empty || item == null ? null : item.toString()));
+                }
+            });
+            tipoContratoComboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(com.proyectodam.fichappclient.dto.TipoContratoConfigDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((item == null) ? "Tipo Contrato" : item.toString());
+                }
+            });
+            tipoContratoComboBox.getSelectionModel().clearSelection();
+            tipoContratoComboBox.setEditable(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarHorarios() {
+        try {
+            horarioComboBox.getItems().setAll(horarioService.obtenerTodos());
+            horarioComboBox.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((empty || item == null ? null : item.getNombre()));
+                }
+            });
+            horarioComboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(HorarioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText((item == null) ? "Horario Base" : item.getNombre());
+                }
+            });
+            horarioComboBox.getSelectionModel().clearSelection();
+            horarioComboBox.setEditable(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     public void botonGuardarEmpleado(ActionEvent event) {
@@ -205,7 +285,14 @@ public class ControlHorarioEmpleadorController {
             altaRapidaEmpleadoDTO.setIdRol(rolDTOComboBox.getValue().getIdRol());
         }
 
-       altaRapidaEmpleadoDTO.setIdEmpresa(2);
+        if (tipoContratoComboBox.getValue() != null) {
+            altaRapidaEmpleadoDTO.setIdTipoContrato(tipoContratoComboBox.getValue().getIdTipoContrato());
+        }
+
+        if (horarioComboBox.getValue() != null) {
+            altaRapidaEmpleadoDTO.setIdHorario(horarioComboBox.getValue().getIdHorario());
+        }
+        altaRapidaEmpleadoDTO.setIdEmpresa(SessionData.getInstance().getIdEmpresa());
 
 
         // Llamada al servicio
@@ -222,13 +309,15 @@ public class ControlHorarioEmpleadorController {
 
 
 
-               // altaRapidaEmpleados.add(resultado);
                 SessionData.getInstance().getEmpleados().add(resultado);
                 AlertUtils.mostrarInfo("Éxito", "Empleado guardado correctamente.");
                 limpiarCampos();
             }
         } catch (Exception e) {
-            AlertUtils.mostrarError("Error API", "No se pudo guardar: " + e.getMessage());
+            e.printStackTrace();
+            AlertUtils.mostrarError("Error al Guardar Empleado", 
+                "El servidor devolvió un error: " + e.getMessage() + 
+                "\n\nPor favor, verifica que los datos (DNI, Email) no estén duplicados y que la empresa sea correcta.");
         }
     }
 
@@ -243,6 +332,8 @@ public class ControlHorarioEmpleadorController {
         datePickerFechaNacimiento.setValue(null);
         departamentoDTOComboBox.getSelectionModel().clearSelection();
         rolDTOComboBox.getSelectionModel().clearSelection();
+        tipoContratoComboBox.getSelectionModel().clearSelection();
+        horarioComboBox.getSelectionModel().clearSelection();
     }
 
     @FXML

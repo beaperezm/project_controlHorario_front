@@ -23,7 +23,7 @@ public class ControlHorarioService {
     }
 
     public ControlHorarioService() {
-        this.apiClient = apiClient = new ApiClient();
+        this.apiClient = new ApiClient();
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

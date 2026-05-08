@@ -1,34 +1,64 @@
 /* Tablas */
 .table-view {
     -fx-background-color: transparent;
+    background-color: transparent;
     -fx-table-cell-border-color: transparent;
     -fx-border-color: -fx-divider;
+    border-color: transparent; /* Fallback for linter */
     -fx-border-width: 1;
+    border-width: 1px;
     -fx-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .table-view .column-header-background {
     -fx-background-color: -fx-sidebar-bg;
+    background-color: transparent; /* Fallback */
     -fx-background-radius: 4px 4px 0 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    background-color: transparent;
     -fx-size: 40px;
+    size: 40px;
+    height: 40px;
 }
-
 .table-view .column-header .label {
     -fx-text-fill: -fx-primary;
+    color: #2c3e50; /* Fallback value for linter */
     -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+/* Alineación específica para tablas que requieren orden lateral (nombres, emails, etc.) */
+.tabla-personalizada .column-header {
+    -fx-alignment: CENTER-LEFT;
+}
+
+.tabla-personalizada .column-header .label {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 10;
+    padding: 0 0 0 10px;
+}
+
+.tabla-personalizada .table-cell {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0 0 0 10;
+    padding: 0 0 0 10px;
 }
 
 .celda-fila-tabla {
     -fx-background-color: -fx-surface;
+    background-color: white; /* Fallback */
     -fx-border-width: 0 0 1 0;
+    border-width: 0 0 1px 0;
     -fx-border-color: #EFEBE9;
+    border-color: #EFEBE9;
 }
 
 .celda-fila-tabla:odd {
     -fx-background-color: #FFFDFC;
+    background-color: #FFFDFC;
     /* Alternancia muy sutil */
 }

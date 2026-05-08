@@ -1,119 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox spacing="20.0" styleClass="fondo-blanco" stylesheets="@../styles/main.css"
-    xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorConfiguracionGeneral">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #f8f9fa;" stylesheets="@../styles/main.css"
+   xmlns="http://javafx.com/javafx/17"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorConfiguracionGeneral">
+   <content>
+      <VBox spacing="25.0" style="-fx-background-color: #f8f9fa;">
+         <padding>
+            <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+         </padding>
+         <children>
+            <!-- Cabecera -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Configuración del Sistema" />
+               </children>
+            </HBox>
 
-    <!-- Sección Información Empresa -->
-    <VBox spacing="10.0" style="-fx-background-color: #FDFBFB; -fx-border-color: #E0E0E0; -fx-border-radius: 4;">
-        <children>
-            <Label style="-fx-background-color: #EAECEE; -fx-background-radius: 4 4 0 0; -fx-padding: 8;" text="Información Empresa" textFill="#757575" maxWidth="1.7976931348623157E308">
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
-            </Label>
+            <!-- Card 1: Información de la Empresa -->
+            <VBox spacing="20.0" styleClass="tarjeta" style="-fx-background-color: white;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Información de la Empresa" />
+                  <HBox spacing="40.0">
+                     <children>
+                        <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <GridPane hgap="20.0" vgap="12.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints minWidth="140" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                 </columnConstraints>
+                                 <children>
+                                    <Label text="Nombre Comercial:" GridPane.rowIndex="0" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtEmpresaNombre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <VBox spacing="8.0">
-                <padding>
-                    <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
-                </padding>
-                <children>
-                    <Label text="Empresa: Mi Empresa S.L." textFill="#616161" />
-                    <Label text="Dirección: Calle Ejemplo 123" textFill="#616161" />
-                    <Label text="Teléfono: 912 345 678" textFill="#616161" />
-                    <Label text="Correo: contacto@miempresa.com" textFill="#616161" />
+                                    <Label text="Dirección Física:" GridPane.rowIndex="1" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtEmpresaDireccion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                    <Button mnemonicParsing="false" styleClass="boton-accion" text="Modificar">
-                        <VBox.margin>
-                            <Insets top="10.0" />
-                        </VBox.margin>
-                    </Button>
-                </children>
+                                    <Label text="Teléfono de Contacto:" GridPane.rowIndex="2" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtEmpresaTelefono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                    <Label text="Correo Corporativo:" GridPane.rowIndex="3" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtEmpresaCorreo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                 <children>
+                                    <Button onAction="#handleGuardarDatosEmpresa" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 6;" text="Guardar Cambios" />
+                                    <Label fx:id="lblEstadoEmpresa" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <!-- Logo Section -->
+                        <VBox alignment="TOP_CENTER" spacing="15.0" minWidth="200">
+                           <children>
+                              <Label text="Logo de la Empresa" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+                              <StackPane style="-fx-background-color: #f1f2f6; -fx-background-radius: 8; -fx-border-color: #dfe4ea; -fx-border-radius: 8; -fx-padding: 10;">
+                                 <ImageView fx:id="imgLogoEmpresa" fitHeight="120.0" fitWidth="120.0" preserveRatio="true" />
+                              </StackPane>
+                              <Button onAction="#handleSeleccionarLogo" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 6 15; -fx-background-radius: 5;" text="Cambiar Logo" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-        </children>
-    </VBox>
 
-    <!-- Sección Idioma -->
-    <VBox spacing="10.0" style="-fx-background-color: #FDFBFB; -fx-border-color: #E0E0E0; -fx-border-radius: 4;">
-        <children>
-            <Label style="-fx-background-color: #EAECEE; -fx-background-radius: 4 4 0 0; -fx-padding: 8;" text="Idioma" textFill="#757575" maxWidth="1.7976931348623157E308">
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
-            </Label>
 
-            <VBox spacing="8.0">
-                <padding>
-                    <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
-                </padding>
-                <children>
-                    <ComboBox fx:id="comboIdioma" prefWidth="200.0" promptText="Español" />
-                </children>
+            <!-- Card 3: Conectividad y Servidor -->
+            <VBox spacing="20.0" style="-fx-background-color: #eef2f7; -fx-background-radius: 12; -fx-border-color: #d1d9e6; -fx-border-radius: 12; -fx-padding: 25;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2980b9;" text="Configuración de Conectividad" />
+                  <Label text="Define el entorno de ejecución para la sincronización de datos." style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;" />
+
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label text="Entorno Activo:" style="-fx-font-weight: bold;" />
+                        <ComboBox fx:id="comboEntorno" prefWidth="350.0" />
+                     </children>
+                  </VBox>
+
+                  <Separator />
+
+                  <StackPane alignment="TOP_LEFT">
+                     <children>
+                        <!-- Panel Local -->
+                        <VBox fx:id="panelLocal" spacing="10.0" visible="true">
+                           <children>
+                              <Label style="-fx-text-fill: #2980b9; -fx-font-style: italic;" text="Conexión directa a http://localhost:8081" wrapText="true" />
+                           </children>
+                        </VBox>
+
+                        <!-- Panel Servidor -->
+                        <GridPane fx:id="panelServidor" hgap="20.0" managed="false" vgap="12.0" visible="false">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="120" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <children>
+                              <Label text="IP / Host:" style="-fx-text-fill: #7f8c8d;" />
+                              <TextField fx:id="txtServerHost" prefWidth="300" GridPane.columnIndex="1" />
+
+                              <Label text="Puerto:" style="-fx-text-fill: #7f8c8d;" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtServerPuerto" maxWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                              <Label text="Base de Datos:" style="-fx-text-fill: #7f8c8d;" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtServerCatalogo" prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                              <Label text="Usuario:" style="-fx-text-fill: #7f8c8d;" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtServerUsuario" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                              <Label text="Contraseña:" style="-fx-text-fill: #7f8c8d;" GridPane.rowIndex="4" />
+                              <PasswordField fx:id="txtServerClave" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+
+                        <!-- Panel Supabase -->
+                        <VBox fx:id="panelSupabase" managed="false" spacing="12.0" visible="false">
+                           <children>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label text="URL Supabase Project:" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtSupaUrl" prefWidth="400" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label text="API Key (Anon/Service):" style="-fx-text-fill: #7f8c8d;" />
+                                    <PasswordField fx:id="txtSupaKey" prefWidth="400" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label text="Contraseña Base de Datos (PostgreSQL):" style="-fx-text-fill: #7f8c8d;" />
+                                    <PasswordField fx:id="txtSupaDbPass" prefWidth="400" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <Label text="Host Pooler (Session Pooler):" style="-fx-text-fill: #7f8c8d;" />
+                                    <TextField fx:id="txtSupaDbHost" prefWidth="400" promptText="aws-0-eu-west-1.pooler.supabase.com" />
+                                    <Label text="Se encuentra en: Supabase → Descripción General → Directo → Agrupador De Transacciones" style="-fx-text-fill: #95a5a6; -fx-font-size: 11px; -fx-font-style: italic;" wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Button onAction="#handleInicializarDB" style="-fx-background-color: #3f51b5; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 6 15; -fx-background-radius: 5;" text="Inicializar Estructura de Datos" />
+                                    <ProgressIndicator fx:id="progressMigration" prefHeight="20.0" prefWidth="20.0" visible="false" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+
+                  <VBox fx:id="panelSeguridad" managed="false" spacing="12.0" visible="false">
+                     <children>
+                        <Separator />
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Seguridad de la API" />
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-text-fill: #7f8c8d;" text="JWT Secret Key:" />
+                              <PasswordField fx:id="txtJwtSecret" prefWidth="400" promptText="Clave de firma de tokens (mínimo 32 caracteres recomendados)" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+                  <Separator />
+
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Button fx:id="btnGuardar" onAction="#handleGuardarConexion" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 6;" text="Aplicar Cambios" />
+                        <Label fx:id="lblEstadoConexion" style="-fx-font-weight: bold;" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-        </children>
-    </VBox>
-
-    <!-- Sección Conectividad (Migrada) -->
-    <VBox spacing="10.0" style="-fx-background-color: #FDFBFB; -fx-border-color: #E0E0E0; -fx-border-radius: 4;">
-        <children>
-            <Label style="-fx-background-color: #EAECEE; -fx-background-radius: 4 4 0 0; -fx-padding: 8;" text="Conectividad y Servidor" textFill="#757575" maxWidth="1.7976931348623157E308">
-                <font>
-                    <Font name="System Bold" size="14.0" />
-                </font>
-            </Label>
-
-            <VBox spacing="15.0">
-                <padding>
-                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                </padding>
-                <children>
-                    <Label text="Seleccione el modo de conexión:" textFill="#616161">
-                        <font>
-                            <Font name="System Bold" size="12.0"/>
-                        </font>
-                    </Label>
-
-                    <VBox spacing="10.0">
-                        <RadioButton fx:id="rbLocal" text="Local (localhost:8082)" textFill="#424242">
-                            <toggleGroup>
-                                <ToggleGroup fx:id="grupoConexion"/>
-                            </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rbServidor" text="Servidor (fichapp.duckdns.org)" toggleGroup="$grupoConexion" textFill="#424242"/>
-                        <RadioButton fx:id="rbSupabase" text="Supabase (Nube)" toggleGroup="$grupoConexion" textFill="#424242"/>
-                    </VBox>
-
-                    <Separator />
-
-                    <VBox spacing="5.0">
-                        <Label text="URL Personalizada (Opcional):" textFill="#616161"/>
-                        <TextField fx:id="txtUrlPersonalizada" promptText="https://mi-servidor.com/api" />
-                    </VBox>
-
-                    <HBox spacing="10.0" alignment="CENTER_LEFT">
-                        <Button fx:id="btnGuardar" onAction="#handleGuardar" styleClass="boton-accion" text="Guardar Configuración"/>
-                        <Label fx:id="lblEstado" text="" textFill="#2E7D32"/>
-                    </HBox>
-
-                    <Label fx:id="lblAdvertencia" text="" textFill="#C62828" wrapText="true" visible="false"/>
-                </children>
-            </VBox>
-        </children>
-    </VBox>
-
-</VBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

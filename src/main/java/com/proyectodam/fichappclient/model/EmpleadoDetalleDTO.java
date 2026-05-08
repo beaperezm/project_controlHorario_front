@@ -7,6 +7,7 @@ public class EmpleadoDetalleDTO {
     private String email;
     private String telefono;
     private String direccion;
+    private String dni;
     private String departamento;
     private String rol;
     private int diasVacacionesTotales;
@@ -53,6 +54,14 @@ public class EmpleadoDetalleDTO {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getDepartamento() {

@@ -32,16 +32,21 @@
                 <Label text="Información Personal" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
                 <GridPane hgap="15" vgap="10">
-                    <Label text="Dirección:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150" prefWidth="180" hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    
+                    <Label text="Dirección:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="direccion" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                    <Label text="Teléfono:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label text="Teléfono:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="telefono" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                    <Label text="Departamento:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label text="Departamento:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="departamento" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                    <Label text="Rol:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label text="Rol:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="rol" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
                 </GridPane>
@@ -52,21 +57,25 @@
                 <Label text="Información Laboral" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
                 <GridPane hgap="15" vgap="10">
-
-                    <Label text="Vacaciones Totales:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150" prefWidth="180" hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    
+                    <Label text="Vacaciones Totales:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="vacacionesTotales" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                    <Label text="Vacaciones Pendientes:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label text="Vacaciones Pendientes:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="vacacionesPendientes" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                    <Label text="Horas Extra:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label text="Horas Extra:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="horasExtra" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                    <Label text="Horario:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label text="Horario:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                     <Label fx:id="horario" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-                    <Label text="Configuración Horario:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                    <Label fx:id="configuracionHorario" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Configuración Horario:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="configuracionHorario" GridPane.rowIndex="4" GridPane.columnIndex="1" wrapText="true"/>
 
                 </GridPane>
 

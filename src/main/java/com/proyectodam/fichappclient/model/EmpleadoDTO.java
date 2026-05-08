@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 
+/** Representación de un empleado recibida desde la API. */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmpleadoDTO {
 
@@ -20,6 +21,7 @@ public class EmpleadoDTO {
     private LocalDate fechaAlta;
     private LocalDate fechaAltaSistema;
     private LocalDate fechaNacimiento;
+    private String imgPerfil;
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -125,8 +127,17 @@ public class EmpleadoDTO {
         this.fechaAlta = fechaAlta;
     }
 
+    public String getImgPerfil() {
+        return imgPerfil;
+    }
+
+    public void setImgPerfil(String imgPerfil) {
+        this.imgPerfil = imgPerfil;
+    }
+
     @Override
     public String toString() {
+        // idEmpleado == -1 se usa como opción "Todos" en los ComboBox de filtro
         if (idEmpleado == -1)
             return nombre != null ? nombre : "Todos";
         String n = nombre != null ? nombre : "";

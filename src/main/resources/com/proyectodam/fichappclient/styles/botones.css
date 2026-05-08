@@ -102,3 +102,45 @@
     -fx-border-width: 1.5px;
     -fx-text-fill: -fx-primary;
 }
+
+/* Botones de control de ventana (StageStyle.UNDECORATED) */
+.boton-ventana {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 6 10;
+    -fx-min-width: 36;
+    -fx-min-height: 28;
+    -fx-max-height: 28;
+}
+
+.boton-ventana:hover {
+    -fx-background-color: rgba(93, 64, 55, 0.1);
+}
+
+.boton-ventana:pressed {
+    -fx-background-color: rgba(93, 64, 55, 0.2);
+}
+
+/* Botón cerrar - rojo al hacer hover */
+.boton-ventana-cerrar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 6 10;
+    -fx-min-width: 36;
+    -fx-min-height: 28;
+    -fx-max-height: 28;
+}
+
+.boton-ventana-cerrar:hover {
+    -fx-background-color: #EF5350;
+}
+
+.boton-ventana-cerrar:hover .svg-path {
+    -fx-stroke: white;
+}
+
+.boton-ventana-cerrar:pressed {
+    -fx-background-color: #C62828;
+}

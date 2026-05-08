@@ -5,82 +5,85 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.proyectodam.fichappclient.controller.ControladorConfiguracion"
-      spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: white;" stylesheets="@../styles/main.css"
+    xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorConfiguracion">
+    <content>
+        <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #f5f5f5;">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
 
-    <Text text="Configuración de Conexión" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-    
-    <Separator/>
-    
-    <VBox spacing="15">
-        <Label text="Selecciona el modo de conexión:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        
-        <VBox spacing="10" style="-fx-padding: 10;">
-            <RadioButton fx:id="radioLocal" text="Local (localhost:8080)" 
-                        style="-fx-font-size: 13px;">
-                <tooltip>
-                    <Tooltip text="Conectar a una base de datos local para desarrollo"/>
-                </tooltip>
-            </RadioButton>
-            
-            <RadioButton fx:id="radioServidor" text="Servidor (fichapp.duckdns.org)" 
-                        style="-fx-font-size: 13px;">
-                <tooltip>
-                    <Tooltip text="Conectar al servidor de producción"/>
-                </tooltip>
-            </RadioButton>
-            
-            <RadioButton fx:id="radioSupabase" text="Supabase (URL personalizada)" 
-                        style="-fx-font-size: 13px;">
-                <tooltip>
-                    <Tooltip text="Conectar a una base de datos Supabase"/>
-                </tooltip>
-            </RadioButton>
-        </VBox>
-        
-        <Separator/>
-        
-        <VBox spacing="10">
-            <Label text="URL Personalizada (opcional):" style="-fx-font-size: 13px;"/>
-            <TextField fx:id="txtUrlPersonalizada" 
-                      promptText="https://tu-servidor.com/api"
-                      style="-fx-font-size: 12px;"/>
-            <Text fx:id="txtAyuda" 
-                  text="Deja vacío para usar la URL por defecto del modo seleccionado"
-                  style="-fx-font-size: 11px; -fx-fill: #666;"/>
-        </VBox>
-        
-        <Separator/>
-        
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Modo actual:" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-            <Label fx:id="lblModoActual" text="LOCAL" 
-                  style="-fx-font-size: 13px; -fx-text-fill: #2196F3;"/>
-        </HBox>
-        
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="URL configurada:" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-            <Label fx:id="lblUrlActual" text="http://localhost:8080/api" 
-                  style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-wrap-text: true;"/>
-        </HBox>
-    </VBox>
-    
-    <Separator/>
-    
-    <HBox spacing="15" alignment="CENTER">
-        <Button fx:id="btnGuardar" text="Guardar y Aplicar" 
-               onAction="#handleGuardar"
-               style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
-                      -fx-font-size: 14px; -fx-padding: 10 30; -fx-cursor: hand;"/>
-        <Button fx:id="btnCancelar" text="Cancelar" 
-               onAction="#handleCancelar"
-               style="-fx-background-color: #9E9E9E; -fx-text-fill: white; 
-                      -fx-font-size: 14px; -fx-padding: 10 30; -fx-cursor: hand;"/>
-    </HBox>
-    
-    <Label fx:id="lblMensaje" 
-          style="-fx-font-size: 12px; -fx-text-fill: #FF5722; -fx-font-weight: bold;"/>
+            <HBox alignment="CENTER_LEFT" spacing="10" minHeight="50.0">
+                <children>
+                    <Button onAction="#handleBackToDashboard" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                        <graphic>
+                            <SVGPath content="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="#2c3e50" scaleX="1.2" scaleY="1.2" />
+                        </graphic>
+                        <tooltip>
+                            <Tooltip text="Volver al Panel Principal" />
+                        </tooltip>
+                    </Button>
+                    <Label text="Configuración de Conexión" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                </children>
+            </HBox>
 
-</VBox>
+            <Separator/>
+
+            <VBox spacing="15">
+                <Label text="Selecciona el modo de conexión:" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+                <VBox spacing="10" style="-fx-padding: 10;">
+                    <RadioButton fx:id="radioLocal" text="Local (localhost:8080)" style="-fx-font-size: 13px;">
+                        <tooltip>
+                            <Tooltip text="Conectar a una base de datos local para desarrollo"/>
+                        </tooltip>
+                    </RadioButton>
+
+                    <RadioButton fx:id="radioServidor" text="Servidor (fichapp.duckdns.org)" style="-fx-font-size: 13px;">
+                        <tooltip>
+                            <Tooltip text="Conectar al servidor de producción"/>
+                        </tooltip>
+                    </RadioButton>
+
+                    <RadioButton fx:id="radioSupabase" text="Supabase (URL personalizada)" style="-fx-font-size: 13px;">
+                        <tooltip>
+                            <Tooltip text="Conectar a una base de datos Supabase"/>
+                        </tooltip>
+                    </RadioButton>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="URL Personalizada (opcional):" style="-fx-font-size: 13px;"/>
+                    <TextField fx:id="txtUrlPersonalizada" promptText="https://tu-servidor.com/api" style="-fx-font-size: 12px;"/>
+                    <Text fx:id="txtAyuda" text="Deja vacío para usar la URL por defecto del modo seleccionado" style="-fx-font-size: 11px; -fx-fill: #666;"/>
+                </VBox>
+
+                <Separator/>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Modo actual:" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                    <Label fx:id="lblModoActual" text="LOCAL" style="-fx-font-size: 13px; -fx-text-fill: #2196F3;"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="URL configurada:" style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                    <Label fx:id="lblUrlActual" text="http://localhost:8080/api" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-wrap-text: true;"/>
+                </HBox>
+            </VBox>
+
+            <Separator/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="btnGuardar" text="Guardar y Aplicar" onAction="#handleGuardar" style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
+                            -fx-font-size: 14px; -fx-padding: 10 30; -fx-cursor: hand;"/>
+                <Button fx:id="btnCancelar" text="Cancelar" onAction="#handleCancelar" style="-fx-background-color: #9E9E9E; -fx-text-fill: white; 
+                            -fx-font-size: 14px; -fx-padding: 10 30; -fx-cursor: hand;"/>
+            </HBox>
+
+            <Label fx:id="lblMensaje" style="-fx-font-size: 12px; -fx-text-fill: #FF5722; -fx-font-weight: bold;"/>
+        </VBox>
+    </content>
+</ScrollPane>

@@ -36,6 +36,9 @@ public class ControladorDocumentos {
     private ComboBox<String> groupCombo;
 
     @FXML
+    private ComboBox<String> yearComboBox;
+
+    @FXML
     private TableView<DocumentoDTO> documentsTable;
 
     @FXML
@@ -64,16 +67,23 @@ public class ControladorDocumentos {
     private ObservableList<DocumentoDTO> documentsData = FXCollections.observableArrayList();
     private ObservableList<EmpleadoDTO> empleadosData = FXCollections.observableArrayList();
 
+    // Paginación
+    private int currentPage = 0;
+    private int pageSize = 15;
+    private long totalElements = 0;
+    private int totalPages = 0;
+
     @FXML
     public void initialize() {
         documentoService = new DocumentoService();
         controlHorarioService = new ControlHorarioService();
 
         // Listener para el filtrado reactivo de todos los campos
-        searchEmpleadoField.textProperty().addListener((obs, oldVal, newVal) -> filtrarTabla());
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> filtrarTabla());
-        typeCombo.valueProperty().addListener((obs, oldVal, newVal) -> filtrarTabla());
-        groupCombo.valueProperty().addListener((obs, oldVal, newVal) -> filtrarTabla());
+        searchEmpleadoField.textProperty().addListener((obs, oldVal, newVal) -> { currentPage = 0; cargarBackendData(); });
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> { currentPage = 0; cargarBackendData(); });
+        typeCombo.valueProperty().addListener((obs, oldVal, newVal) -> { currentPage = 0; cargarBackendData(); });
+        groupCombo.valueProperty().addListener((obs, oldVal, newVal) -> { currentPage = 0; cargarBackendData(); });
+        yearComboBox.valueProperty().addListener((obs, oldVal, newVal) -> { currentPage = 0; cargarBackendData(); });
 
         // Lógica del CheckBox general 'Seleccionar Todos'
         if (selectAllCheck != null) {
@@ -128,6 +138,7 @@ public class ControladorDocumentos {
             private final HBox pane = new HBox(5, btnDescargar, btnDelete);
 
             {
+                pane.setAlignment(javafx.geometry.Pos.CENTER);
                 btnDescargar.getStyleClass().add("boton-icono");
                 btnDelete.getStyleClass().add("boton-icono-peligro");
 
@@ -161,102 +172,113 @@ public class ControladorDocumentos {
         });
 
         documentsTable.getItems().addListener((ListChangeListener<DocumentoDTO>) c -> actualizarEtiquetaPaginacion());
-        // Establecemos que reciba los datos originales, luego la función filtrarTabla
-        // modificará los items mostrados.
         documentsTable.setItems(documentsData);
 
         // Carga inicial conectada a BBDD
-        cargarEmpleadosYDocumentosDesdeBackend();
+        cargarTiempos();
+        cargarBackendData();
     }
-
-    private void cargarEmpleadosYDocumentosDesdeBackend() {
+    
+    private void cargarTiempos() {
         new Thread(() -> {
             try {
-                List<EmpleadoDTO> listadoEmpleados = controlHorarioService.getAllEmpleados();
-                List<DocumentoDTO> listadoBackend = documentoService.listarTodos();
-                List<DepartamentoDTO> listadoDepartamentos = controlHorarioService.getAllDepartamentos();
-
+                List<String> tiempos = documentoService.obtenerTiemposDisponibles(null); // Obtener años de todas las categorías
                 Platform.runLater(() -> {
-                    empleadosData.clear();
-                    // Opcionalmente añadir un objeto Empleado 'Todos' con id nulo
-                    EmpleadoDTO todos = new EmpleadoDTO();
-                    todos.setIdEmpleado(-1);
-                    todos.setNombre("Todos");
-                    todos.setApellidos("los Empleados");
-                    empleadosData.add(todos);
-                    empleadosData.addAll(listadoEmpleados);
-
-                    documentsData.clear();
-                    documentsData.addAll(listadoBackend);
-
-                    // Cargar combos dinámicamente con la opción de 'Todos' y tipos base
-                    List<String> tipDocs = new java.util.ArrayList<>(
-                            java.util.Arrays.asList("NÓMINA", "CONTRATO", "CERTIFICADO", "PRL", "OTROS"));
-                    listadoBackend.stream()
-                            .map(doc -> doc.getCategoria() != null ? doc.getCategoria().toUpperCase() : "DESCONOCIDO")
-                            .filter(cat -> !tipDocs.contains(cat))
-                            .distinct()
-                            .forEach(tipDocs::add);
-                    tipDocs.add(0, "Todos");
-                    typeCombo.setItems(FXCollections.observableArrayList(tipDocs));
-                    typeCombo.getSelectionModel().selectFirst();
-
-                    // Cargar departamentos reales devueltos por la BD
-                    List<String> deps = listadoDepartamentos.stream()
-                            .map(DepartamentoDTO::getNombre)
-                            .distinct().collect(Collectors.toList());
-                    deps.add(0, "Todos");
-                    groupCombo.setItems(FXCollections.observableArrayList(deps));
-                    groupCombo.getSelectionModel().selectFirst();
-
-                    filtrarTabla();
+                    ObservableList<String> years = FXCollections.observableArrayList("Todos");
+                    if (tiempos != null) {
+                        years.addAll(tiempos);
+                    }
+                    yearComboBox.setItems(years);
+                    yearComboBox.setButtonCell(new ListCell<>() {
+                        @Override
+                        protected void updateItem(String item, boolean empty) {
+                            super.updateItem(item, empty);
+                            setText((empty || item == null) ? "Tiempo" : item);
+                        }
+                    });
+                    yearComboBox.getSelectionModel().clearSelection();
                 });
             } catch (Exception e) {
-                Platform.runLater(() -> mostrarError("Error al cargar datos", e.getMessage()));
+                System.err.println("Error cargando tiempos en documentos: " + e.getMessage());
             }
         }).start();
     }
 
-    private void filtrarTabla() {
-        String textoBuscEmpleado = searchEmpleadoField.getText();
-        String qEmpleado = (textoBuscEmpleado != null) ? textoBuscEmpleado.toLowerCase().trim() : "";
+    private void cargarBackendData() {
+        new Thread(() -> {
+            try {
+                // Cargar empleados solo si están vacíos para el diálogo de subida
+                if (empleadosData.isEmpty()) {
+                    List<EmpleadoDTO> listadoEmpleados = controlHorarioService.getAllEmpleados();
+                    Platform.runLater(() -> {
+                        empleadosData.clear();
+                        EmpleadoDTO todos = new EmpleadoDTO();
+                        todos.setIdEmpleado(-1);
+                        todos.setNombre("Todos");
+                        todos.setApellidos("los Empleados");
+                        empleadosData.add(todos);
+                        empleadosData.addAll(listadoEmpleados);
+                    });
+                }
+                
+                // Cargar departamentos para los combos si están vacíos
+                if (groupCombo.getItems() == null || groupCombo.getItems().isEmpty()) {
+                    List<DepartamentoDTO> listadoDepartamentos = controlHorarioService.getAllDepartamentos();
+                    Platform.runLater(() -> {
+                        List<String> deps = listadoDepartamentos.stream()
+                                .map(DepartamentoDTO::getNombre)
+                                .distinct().collect(Collectors.toList());
+                        deps.add(0, "Todos");
+                        groupCombo.setItems(FXCollections.observableArrayList(deps));
+                        groupCombo.setButtonCell(new ListCell<>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setText((empty || item == null) ? "Departamento" : item);
+                            }
+                        });
+                        groupCombo.getSelectionModel().clearSelection();
+                        
+                        // Tipos fijos (se podrían parametrizar también)
+                        typeCombo.setItems(FXCollections.observableArrayList("Todos", "CONTRATO", "CERTIFICADO", "PRL", "OTROS"));
+                        typeCombo.setButtonCell(new ListCell<>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setText((empty || item == null) ? "Tipo Documento" : item);
+                            }
+                        });
+                        typeCombo.getSelectionModel().clearSelection();
+                    });
+                }
 
-        String textoBuscArchivo = searchField.getText();
-        String qArchivo = (textoBuscArchivo != null) ? textoBuscArchivo.toLowerCase().trim() : "";
+                String qEmpleado = searchEmpleadoField.getText();
+                String qArchivo = searchField.getText();
+                String qCategoria = typeCombo.getValue();
+                if ("Todos".equalsIgnoreCase(qCategoria)) qCategoria = null;
+                String selectedYear = yearComboBox.getValue();
+                String selectedDep = groupCombo.getValue();
+                
+                // En Documentos filtramos sin categoría fija o con la del combo
+                com.proyectodam.fichappclient.model.PageResponseDTO<DocumentoDTO> pagina = 
+                    documentoService.obtenerPaginados(currentPage, pageSize, qCategoria, null, (qArchivo != null && !qArchivo.isEmpty() ? qArchivo : qEmpleado), selectedYear, selectedDep);
 
-        String qCategoria = typeCombo.getValue();
-        boolean filtroCategoriaActivo = qCategoria != null && !qCategoria.isEmpty() && !qCategoria.equals("Todos");
-
-        String qDepartamento = groupCombo.getValue();
-        boolean filtroDepartamentoActivo = qDepartamento != null && !qDepartamento.isEmpty()
-                && !qDepartamento.equals("Todos");
-
-        // Buscar IDs de empleados que coincidan
-        List<Integer> idsEmpleadosCoincidentes = empleadosData.stream()
-                .filter(e -> e.getIdEmpleado() != -1 &&
-                        ((e.getNombre() != null && e.getNombre().toLowerCase().contains(qEmpleado)) ||
-                                (e.getApellidos() != null && e.getApellidos().toLowerCase().contains(qEmpleado))))
-                .map(EmpleadoDTO::getIdEmpleado)
-                .collect(Collectors.toList());
-
-        ObservableList<DocumentoDTO> filtrados = FXCollections.observableArrayList();
-
-        for (DocumentoDTO doc : documentsData) {
-            boolean matchEmpleado = qEmpleado.isEmpty()
-                    || (doc.getIdEmpleado() != null && idsEmpleadosCoincidentes.contains(doc.getIdEmpleado()));
-            boolean matchArchivo = qArchivo.isEmpty()
-                    || (doc.getNombreArchivo() != null && doc.getNombreArchivo().toLowerCase().contains(qArchivo));
-            boolean matchCategoria = !filtroCategoriaActivo
-                    || (doc.getCategoria() != null && doc.getCategoria().equalsIgnoreCase(qCategoria));
-            boolean matchDepartamento = !filtroDepartamentoActivo
-                    || (doc.getDepartamento() != null && doc.getDepartamento().equalsIgnoreCase(qDepartamento));
-
-            if (matchEmpleado && matchArchivo && matchCategoria && matchDepartamento) {
-                filtrados.add(doc);
+                Platform.runLater(() -> {
+                    documentsData.clear();
+                    if (pagina != null && pagina.getContent() != null) {
+                        documentsData.addAll(pagina.getContent());
+                        totalElements = pagina.getTotalElements();
+                        totalPages = pagina.getTotalPages();
+                    } else {
+                        totalElements = 0;
+                        totalPages = 0;
+                    }
+                    actualizarEtiquetaPaginacion();
+                });
+            } catch (Exception e) {
+                Platform.runLater(() -> mostrarError("Error al cargar datos de documentos", e.getMessage()));
             }
-        }
-        documentsTable.setItems(filtrados);
-        actualizarEtiquetaPaginacion();
+        }).start();
     }
 
     @FXML
@@ -327,7 +349,7 @@ public class ControladorDocumentos {
 
         ComboBox<String> categoriaCombo = new ComboBox<>();
         categoriaCombo.setPromptText("Elegir tipo...");
-        categoriaCombo.getItems().addAll("NÓMINA", "CONTRATO", "CERTIFICADO", "OTROS");
+        categoriaCombo.getItems().addAll("CONTRATO", "CERTIFICADO", "OTROS");
         categoriaCombo.setEditable(false);
         categoriaCombo.setMaxWidth(Double.MAX_VALUE);
 
@@ -398,8 +420,8 @@ public class ControladorDocumentos {
                 DocumentoDTO subido = documentoService.subirDocumento(file, nombreCustom, categoria, idEmpleado);
 
                 Platform.runLater(() -> {
-                    documentsData.add(subido);
-                    filtrarTabla();
+                    documentsData.add(0, subido);
+                    actualizarEtiquetaPaginacion();
                     mostrarInfo("Éxito", "Documento '" + nombreCustom + "' subido correctamente.");
                 });
             } catch (Exception e) {
@@ -441,7 +463,7 @@ public class ControladorDocumentos {
                 documentoService.eliminarDocumento(doc.getId());
                 Platform.runLater(() -> {
                     documentsData.remove(doc);
-                    filtrarTabla(); // Refrescar la vista filtrada para reflejar el borrado de inmediato
+                    actualizarEtiquetaPaginacion();
                     mostrarInfo("Eliminado", "El archivo fue borrado exitosamente del sistema.");
                 });
             } catch (Exception e) {
@@ -451,12 +473,8 @@ public class ControladorDocumentos {
     }
 
     private void actualizarEtiquetaPaginacion() {
-        int total = documentsTable.getItems().size();
-        if (total == 0) {
-            paginationLabel.setText("No hay documentos");
-        } else {
-            paginationLabel.setText("Mostrando " + total + " de " + total);
-        }
+        int pageText = totalPages == 0 ? 0 : currentPage + 1;
+        paginationLabel.setText("Página " + pageText + " de " + totalPages + " (Total: " + totalElements + ")");
     }
 
     private void mostrarError(String titulo, String mensaje) {
@@ -479,21 +497,27 @@ public class ControladorDocumentos {
     public void limpiarFiltros() {
         searchEmpleadoField.clear();
         searchField.clear();
-        typeCombo.getSelectionModel().selectFirst();
-        groupCombo.getSelectionModel().selectFirst();
-        filtrarTabla();
+        typeCombo.getSelectionModel().clearSelection();
+        groupCombo.getSelectionModel().clearSelection();
+        yearComboBox.getSelectionModel().clearSelection();
+        currentPage = 0;
+        cargarBackendData();
     }
 
     @FXML
     public void paginaAnterior() {
-        mostrarInfo("Paginación",
-                "Actualmente se están mostrando todos los resultados posibles en una misma página web.");
+        if (currentPage > 0) {
+            currentPage--;
+            cargarBackendData();
+        }
     }
 
     @FXML
     public void paginaSiguiente() {
-        mostrarInfo("Paginación",
-                "Actualmente se están mostrando todos los resultados posibles en una misma página web.");
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            cargarBackendData();
+        }
     }
 
     @FXML

@@ -141,6 +141,7 @@ public class ControlHorarioEmpleadorEmpleadoController {
             try {
                 List<EmpleadoDTO> listaEmpleados = controlHorarioEmpleadorEmpleadoService.getAllEmpleados();
 
+                // El backend ya devuelve la lista filtrada de cuentas de sistema
                 Platform.runLater(() -> {
                     listadoEmpleados.setAll(listaEmpleados);
                 });

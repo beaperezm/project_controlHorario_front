@@ -5,9 +5,9 @@ package com.proyectodam.fichappclient.enums;
  * Define la URL base por defecto para cada entorno (Local, Servidor, Cloud).
  */
 public enum ModoConexion {
-    LOCAL("Local", "http://localhost:8080/api"),
+    LOCAL("Local", "http://localhost:8081/api"),
     SERVIDOR("Servidor", "https://fichapp.duckdns.org/api"),
-    SUPABASE("Supabase", null);
+    SUPABASE("Supabase", "http://localhost:8081/api");
 
     private final String displayName;
     private final String urlDefecto;

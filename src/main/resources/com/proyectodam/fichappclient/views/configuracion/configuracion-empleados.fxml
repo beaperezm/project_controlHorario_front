@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #f8f9fa;" stylesheets="@../../styles/main.css"
+   xmlns="http://javafx.com/javafx/17"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyectodam.fichappclient.controller.ControladorConfiguracionEmpleados">
+   <content>
+      <VBox spacing="25.0" style="-fx-background-color: #f8f9fa;">
+         <padding>
+            <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+         </padding>
+         <children>
+            <!-- Cabecera -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Configuración de Empleados" />
+               </children>
+            </HBox>
+
+         <!-- Card 1: Tipos de Contrato -->
+            <VBox spacing="20.0" styleClass="tarjeta" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Tipos y Duraciones de Contrato" />
+                  
+                  <HBox spacing="20.0">
+                     <children>
+                        <!-- Formulario para nuevo contrato -->
+                        <VBox spacing="10.0" HBox.hgrow="SOMETIMES" prefWidth="300.0">
+                           <children>
+                              <Label text="Añadir nuevo tipo:" style="-fx-font-weight: bold;" />
+                              <TextField fx:id="txtNombreContrato" promptText="Nombre (Ej: Temporal 6 meses)" />
+                              <CheckBox fx:id="chkIndefinido" text="Es indefinido" />
+                              <TextField fx:id="txtDuracionMeses" promptText="Duración en meses" />
+                              <Button onAction="#handleGuardarContrato" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Añadir" maxWidth="Infinity" />
+                              <Label fx:id="lblMensajeContrato" textFill="#e74c3c" wrapText="true" />
+                           </children>
+                        </VBox>
+                        
+                        <!-- Lista de contratos existentes -->
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ListView fx:id="listContratos" prefHeight="150.0" />
+                              <Button onAction="#handleEliminarContrato" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Eliminar Seleccionado" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+
+            <!-- Card 3: Horarios Base -->
+            <VBox spacing="20.0" styleClass="tarjeta" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8;">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Horarios Disponibles" />
+                  
+                  <HBox spacing="20.0">
+                     <children>
+                        <VBox spacing="10.0" HBox.hgrow="SOMETIMES" prefWidth="300.0">
+                           <children>
+                              <Label text="Añadir nuevo horario:" style="-fx-font-weight: bold;" />
+                              <TextField fx:id="txtNombreHorario" promptText="Nombre (Ej: Mañana 8h-15h)" />
+                              <Button onAction="#handleGuardarHorario" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Añadir" maxWidth="Infinity" />
+                              <Label fx:id="lblMensajeHorario" textFill="#e74c3c" wrapText="true" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ListView fx:id="listHorarios" prefHeight="150.0" />
+                              <Button onAction="#handleEliminarHorario" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Eliminar Seleccionado" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

@@ -3,6 +3,7 @@ package com.proyectodam.fichappclient.controller;
 import com.proyectodam.fichappclient.model.*;
 import com.proyectodam.fichappclient.service.ControlHorarioService;
 import com.proyectodam.fichappclient.util.AlertUtils;
+import com.proyectodam.fichappclient.service.ServicioNavegacion;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -51,7 +52,7 @@ public class ControlHorarioController {
         txtTelefono.setTextFormatter(new TextFormatter<>(filtro));
 
         Tooltip avisoEmail = new Tooltip("EL formato del email es incorrecto");
-        Tooltip avisoDni = new Tooltip("EL formato del dni es incorrecto (tiene que tener 8 números y 1 letra");
+        Tooltip avisoDni = new Tooltip("EL formato del dni es incorrecto (tiene que tener 8 números y 1 letra)");
 
         txtEmail.textProperty().addListener((valorAObservar, valorAntiguo, valorNuevo) -> {
             if (valorNuevo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
@@ -245,5 +246,10 @@ public class ControlHorarioController {
 
         tablaAltaRapidaEmpleados.getSelectionModel().selectedItemProperty()
                 .addListener((observable, antiguoValor, nuevoValor) -> botonEliminar.setDisable(nuevoValor == null));
+    }
+
+    @FXML
+    private void handleBackToDashboard(ActionEvent event) {
+        ServicioNavegacion.getInstance().navigateToDashboardBase();
     }
 }
