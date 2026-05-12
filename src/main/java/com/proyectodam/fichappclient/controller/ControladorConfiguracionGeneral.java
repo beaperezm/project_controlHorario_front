@@ -279,17 +279,19 @@ public class ControladorConfiguracionGeneral {
             try {
                 com.proyectodam.fichappclient.util.ApiClient apiClient = new com.proyectodam.fichappclient.util.ApiClient();
 
-                String jsonRequest = String.format(
-                        "{\"modo\":\"%s\",\"urlPersonalizada\":\"%s\",\"supaUrl\":\"%s\",\"supaKey\":\"%s\",\"supaDbPass\":\"%s\",\"supaDbUser\":\"%s\",\"supaDbName\":\"%s\",\"supaDbHost\":\"%s\",\"jwtSecret\":\"%s\"}",
-                        modo.name(),
-                        urlPersonalizada != null ? urlPersonalizada : "",
-                        config.getSupaUrl() != null ? config.getSupaUrl() : "",
-                        config.getSupaKey() != null ? config.getSupaKey() : "",
-                        config.getSupaDbPass() != null ? config.getSupaDbPass() : "",
-                        config.getSupaDbUser() != null ? config.getSupaDbUser() : "postgres",
-                        config.getSupaDbName() != null ? config.getSupaDbName() : "postgres",
-                        config.getSupaDbHost() != null ? config.getSupaDbHost() : "",
-                        config.getJwtSecret() != null ? config.getJwtSecret() : "");
+                com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                java.util.Map<String, String> payload = new java.util.HashMap<>();
+                payload.put("modo", modo.name());
+                payload.put("urlPersonalizada", urlPersonalizada != null ? urlPersonalizada : "");
+                payload.put("supaUrl", config.getSupaUrl() != null ? config.getSupaUrl() : "");
+                payload.put("supaKey", config.getSupaKey() != null ? config.getSupaKey() : "");
+                payload.put("supaDbPass", config.getSupaDbPass() != null ? config.getSupaDbPass() : "");
+                payload.put("supaDbUser", config.getSupaDbUser() != null ? config.getSupaDbUser() : "postgres");
+                payload.put("supaDbName", config.getSupaDbName() != null ? config.getSupaDbName() : "postgres");
+                payload.put("supaDbHost", config.getSupaDbHost() != null ? config.getSupaDbHost() : "");
+                payload.put("jwtSecret", config.getJwtSecret() != null ? config.getJwtSecret() : "");
+                
+                String jsonRequest = mapper.writeValueAsString(payload);
 
                 apiClient.put("/configuracion/conexion", jsonRequest);
             } catch (Exception e) {
